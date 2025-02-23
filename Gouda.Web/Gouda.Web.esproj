@@ -12,9 +12,6 @@
         <BuildCommand>pnpm run build</BuildCommand>
         <RestoreEnableGlobalPackageReference>false</RestoreEnableGlobalPackageReference>
     </PropertyGroup>
-    <ItemGroup>
-      <Folder Include="public\" />
-    </ItemGroup>
 
     <Target Name="RunPnpmInstall" BeforeTargets="RunNpmInstall" Inputs="$(PackageJsonDirectory)\package.json" Outputs="$(NpmInstallCheck)">
         <Message Importance="high" Text="Restoring dependencies using 'pnpm'. This may take several minutes..." />

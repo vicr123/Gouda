@@ -1,9 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
-export const Route = createFileRoute('/about')({
-  component: RouteComponent,
-})
+export const Route = createFileRoute("/about")({
+    component: RouteComponent,
+});
 
 function RouteComponent() {
-  return <div>Hello "/about"!</div>
+    const { t } = useTranslation();
+    return <div>{t("TEST_TRANSLATION")}</div>;
 }
