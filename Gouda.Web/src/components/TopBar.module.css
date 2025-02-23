@@ -2,6 +2,13 @@
     grid-area: topbar;
     border-right: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
+    
+    display: grid;
+    grid-template-areas: "icon . user";
+    grid-template-columns: max-content 1fr max-content;
+    padding: var(--padding);
+}
 
-    backdrop-filter: var(--backdrop-filter);
+.userButton {
+    grid-area: user;
 }

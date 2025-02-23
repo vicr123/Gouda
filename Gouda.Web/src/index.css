@@ -7,6 +7,11 @@ body {
     --foreground-color: white;
     --border-color: rgba(255, 255, 255, 25%);
     --backdrop-filter: blur(20px);
+    --hover-background-color: var(--foreground-color);
+    --hover-foreground-color: var(--background-color);
+    
+    --padding: 4px;
+    --border-radius: 4px;
     
     color: var(--foreground-color);
     

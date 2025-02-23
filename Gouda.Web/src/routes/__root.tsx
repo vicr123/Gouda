@@ -6,8 +6,9 @@ import { TopBar } from "../components/TopBar.tsx";
 export const Route = createRootRoute({
     component: () => (
         <>
-            <div className={Styles.background} />
             <div className={Styles.root}>
+                <div className={Styles.background} />
+                <div className={Styles.backgroundFilter} />
                 <TopBar />
                 <div className={Styles.sidebar}>Sidebar</div>
                 <div className={Styles.main}>
