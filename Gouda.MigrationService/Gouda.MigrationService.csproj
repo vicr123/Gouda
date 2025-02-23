@@ -4,15 +4,19 @@
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <UserSecretsId>dotnet-Gouda.Bot-ab20098c-c9bf-4ec9-b198-d6d5cdbe9c82</UserSecretsId>
+        <UserSecretsId>dotnet-Gouda.MigrationService-57db16fc-4512-4a9e-8297-d1e943afe33d</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1"/>
-        <PackageReference Include="Remora.Discord" Version="2025.1.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Gouda.Database\Gouda.Database.csproj" />
+      <ProjectReference Include="..\Gouda.ServiceDefaults\Gouda.ServiceDefaults.csproj" />
     </ItemGroup>
 </Project>

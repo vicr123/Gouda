@@ -1,3 +1,6 @@
+using Gouda.Database;
+using Gouda.ServiceDefaults;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire client integrations.
@@ -10,6 +13,8 @@ builder.Services.AddProblemDetails();
 builder.Services.AddOpenApi();
 
 builder.Services.AddControllers();
+
+builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda");
 
 var app = builder.Build();
 

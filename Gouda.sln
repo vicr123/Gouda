@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.Database", "Gouda.Dat
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Gouda.Web", "Gouda.Web\Gouda.Web.esproj", "{E780250B-A1DC-46CF-BBCE-21F4326EA4D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.MigrationService", "Gouda.MigrationService\Gouda.MigrationService.csproj", "{73BA81F7-ABA4-4648-913A-A1EFA4CCD88C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{E780250B-A1DC-46CF-BBCE-21F4326EA4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E780250B-A1DC-46CF-BBCE-21F4326EA4D2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{E780250B-A1DC-46CF-BBCE-21F4326EA4D2}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{73BA81F7-ABA4-4648-913A-A1EFA4CCD88C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73BA81F7-ABA4-4648-913A-A1EFA4CCD88C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73BA81F7-ABA4-4648-913A-A1EFA4CCD88C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73BA81F7-ABA4-4648-913A-A1EFA4CCD88C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

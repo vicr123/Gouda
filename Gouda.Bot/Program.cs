@@ -1,7 +1,5 @@
-using Gouda;
 using Gouda.Bot;
-using Gouda.Bot.Commands;
-using Remora.Commands.Extensions;
+using Gouda.Database;
 using Remora.Discord.API.Abstractions.Rest;
 using Remora.Discord.Caching.Extensions;
 using Remora.Discord.Commands.Extensions;
@@ -20,8 +18,9 @@ builder.Services
     .AddDiscordCaching()
     .AddDiscordCommands(enableSlash: true)
     .AddInteractivity()
-    .AddCommandTree().WithCommandGroup<PingCommand>();
-    // .AddCommandGroupsFromAssembly(typeof(Program).Assembly);
+    .AddCommandGroupsFromAssembly(typeof(Program).Assembly);
+
+builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda");
 
 var host = builder.Build();
 

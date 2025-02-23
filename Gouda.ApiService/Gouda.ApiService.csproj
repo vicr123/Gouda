@@ -10,6 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Gouda.Database\Gouda.Database.csproj" />
         <ProjectReference Include="..\Gouda.ServiceDefaults\Gouda.ServiceDefaults.csproj"/>
     </ItemGroup>
     

@@ -14,6 +14,7 @@
     <ItemGroup>
         <ProjectReference Include="..\Gouda.ApiService\Gouda.ApiService.csproj"/>
         <ProjectReference Include="..\Gouda.Bot\Gouda.Bot.csproj" />
+        <ProjectReference Include="..\Gouda.MigrationService\Gouda.MigrationService.csproj" />
     </ItemGroup>
 
     <ItemGroup>

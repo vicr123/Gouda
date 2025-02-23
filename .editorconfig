@@ -1,0 +1,23 @@
+root = true
+
+[*]
+insert_final_newline = true
+
+[*.cs]
+indentationSize = 4
+tabSize = 4
+useTabs = false
+csharp_using_directive_placement = outsideNamespace
+stylecop.layout.newlineAtEndOfFile = require
+stylecop.documentation.documentInterfaces = false
+stylecop.documentation.documentExposedElements = false
+stylecop.documentation.documentInternalElements = false
+stylecop.documentation.documentPrivateElements = false
+stylecop.documentation.documentPrivateFields = false
+
+dotnet_diagnostic.SA1200.severity = None
+dotnet_diagnostic.SA1633.severity = None
+dotnet_diagnostic.SA1101.severity = None
+dotnet_diagnostic.SA1127.severity = None
+dotnet_diagnostic.SA1515.severity = None
+dotnet_diagnostic.SA1202.severity = None
