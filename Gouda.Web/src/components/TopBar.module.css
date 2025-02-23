@@ -1,0 +1,7 @@
+.root {
+    grid-area: topbar;
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+
+    backdrop-filter: var(--backdrop-filter);
+}

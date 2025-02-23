@@ -1,0 +1,35 @@
+.root {
+    display: grid;
+    grid-template-areas: "topbar topbar padding" "sidebar main padding";
+    grid-template-columns: 300px 900px 1fr;
+    grid-template-rows: max-content 1fr;
+    height: 100dvh;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    border-right: 1px solid var(--border-color);
+    
+    backdrop-filter: var(--backdrop-filter);
+}
+
+.main {
+    grid-area: main;
+    border-right: 1px solid var(--border-color);
+
+    backdrop-filter: var(--backdrop-filter);
+}
+
+.padding {
+    
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: url("../assets/citylights.jpeg") center center/cover no-repeat;
+}

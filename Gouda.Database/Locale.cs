@@ -7,5 +7,5 @@ public class Locale
     [Key]
     public ulong UserId { get; set; }
 
-    public string LocaleName { get; set; }
+    public required string LocaleName { get; set; }
 }

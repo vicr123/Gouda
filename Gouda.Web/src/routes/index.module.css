@@ -1,0 +1,19 @@
+.root {
+    display: grid;
+    grid-template-areas: "." "title" "text" ".";
+    grid-template-rows: 1fr max-content max-content 2fr;
+    
+    padding: 12px;
+    
+    height: 100%;
+}
+
+.title {
+    grid-area: title;
+    font-weight: 300;
+    font-size: 30pt;
+}
+
+.text {
+    grid-area: text;
+}
