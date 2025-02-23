@@ -1,3 +1,4 @@
+using System.Globalization;
 using Gouda.Database;
 using I18Next.Net;
 using I18Next.Net.Plugins;
@@ -7,7 +8,7 @@ namespace Gouda.Bot.Services;
 
 public class TranslationService
 {
-    private II18Next _i18Next;
+    private readonly II18Next _i18Next;
 
     public TranslationService(IInteractionCommandContext interactionContext, GoudaDbContext dbContext)
     {
@@ -25,4 +26,6 @@ public class TranslationService
     public string this[string key] => _i18Next.T(key);
 
     public string this[string key, object args] => _i18Next.T(key, args);
+
+    public CultureInfo Culture => new(_i18Next.Language);
 }

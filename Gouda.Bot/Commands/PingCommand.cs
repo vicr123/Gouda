@@ -11,7 +11,7 @@ public class PingCommand(IFeedbackService feedbackService, TranslationService tr
 {
     [Command("ping")]
     [Description("Request a response")]
-    public async Task<Result> Drop()
+    public async Task<Result> Ping()
     {
         await feedbackService.SendContextualAsync(translationService["PING_RESPONSE"]);
 

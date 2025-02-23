@@ -1,3 +1,5 @@
 {
-  "PING_RESPONSE": "Pong!"
+  "PING_RESPONSE": "Pong!",
+  "CONFIGURE_TITLE": "Configuration",
+  "CONFIG_RESPONSE": "To configure {{botName}}, visit {{configurationLink}}."
 }
