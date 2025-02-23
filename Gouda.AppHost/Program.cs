@@ -7,18 +7,18 @@ var pgDb = pg.AddDatabase("gouda");
 var migration = builder.AddProject<Projects.Gouda_MigrationService>("migrationservice");
 
 migration
-    .WithReference(pgDb)
-    .WaitFor(pgDb);
+     .WithReference(pgDb)
+     .WaitFor(pgDb);
 
 apiService
-    .WaitForCompletion(migration)
+    // .WaitForCompletion(migration)
     .WithExternalHttpEndpoints()
     .WithReference(pgDb)
     .WithReference(botService)
     .WaitFor(botService);
 
 botService
-    .WaitForCompletion(migration)
+    // .WaitForCompletion(migration)
     .WithReference(pgDb);
 
 builder.Build().Run();

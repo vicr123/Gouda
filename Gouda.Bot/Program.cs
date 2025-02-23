@@ -1,5 +1,8 @@
 using Gouda.Bot;
+using Gouda.Bot.Services;
 using Gouda.Database;
+using I18Next.Net.Extensions;
+using I18Next.Net.Plugins;
 using Remora.Discord.API.Abstractions.Rest;
 using Remora.Discord.Caching.Extensions;
 using Remora.Discord.Commands.Extensions;
@@ -18,7 +21,8 @@ builder.Services
     .AddDiscordCaching()
     .AddDiscordCommands(enableSlash: true)
     .AddInteractivity()
-    .AddCommandGroupsFromAssembly(typeof(Program).Assembly);
+    .AddCommandGroupsFromAssembly(typeof(Program).Assembly)
+    .AddScoped<TranslationService>();
 
 builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda");
 

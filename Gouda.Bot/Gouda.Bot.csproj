@@ -8,11 +8,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="I18Next.Net.Extensions" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1"/>
         <PackageReference Include="Remora.Discord" Version="2025.1.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Gouda.Database\Gouda.Database.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Translations\**\*.json" />
     </ItemGroup>
 </Project>

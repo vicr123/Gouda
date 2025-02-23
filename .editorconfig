@@ -21,3 +21,4 @@ dotnet_diagnostic.SA1101.severity = None
 dotnet_diagnostic.SA1127.severity = None
 dotnet_diagnostic.SA1515.severity = None
 dotnet_diagnostic.SA1202.severity = None
+dotnet_diagnostic.SA1309.severity = None
