@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.ApiService", "Gouda.ApiService\Gouda.ApiService.csproj", "{D3F0F220-BFDA-48A7-B225-60D4C436349C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.AppHost", "Gouda.AppHost\Gouda.AppHost.csproj", "{B8B901B2-58AE-4DCE-B3D3-BCDA9DB7FC1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.ServiceDefaults", "Gouda.ServiceDefaults\Gouda.ServiceDefaults.csproj", "{376EF044-EC01-4469-966F-A5F5305AA8B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.Bot", "Gouda.Bot\Gouda.Bot.csproj", "{ABEFC8D4-D6E2-4FC3-855D-E9D188186C39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.Database", "Gouda.Database\Gouda.Database.csproj", "{51CE0398-CE04-4983-8038-4323A5A94188}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Gouda.Web", "Gouda.Web\Gouda.Web.esproj", "{E780250B-A1DC-46CF-BBCE-21F4326EA4D2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3F0F220-BFDA-48A7-B225-60D4C436349C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3F0F220-BFDA-48A7-B225-60D4C436349C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3F0F220-BFDA-48A7-B225-60D4C436349C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3F0F220-BFDA-48A7-B225-60D4C436349C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8B901B2-58AE-4DCE-B3D3-BCDA9DB7FC1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8B901B2-58AE-4DCE-B3D3-BCDA9DB7FC1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8B901B2-58AE-4DCE-B3D3-BCDA9DB7FC1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8B901B2-58AE-4DCE-B3D3-BCDA9DB7FC1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{376EF044-EC01-4469-966F-A5F5305AA8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{376EF044-EC01-4469-966F-A5F5305AA8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{376EF044-EC01-4469-966F-A5F5305AA8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{376EF044-EC01-4469-966F-A5F5305AA8B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABEFC8D4-D6E2-4FC3-855D-E9D188186C39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABEFC8D4-D6E2-4FC3-855D-E9D188186C39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABEFC8D4-D6E2-4FC3-855D-E9D188186C39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABEFC8D4-D6E2-4FC3-855D-E9D188186C39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51CE0398-CE04-4983-8038-4323A5A94188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51CE0398-CE04-4983-8038-4323A5A94188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51CE0398-CE04-4983-8038-4323A5A94188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51CE0398-CE04-4983-8038-4323A5A94188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E780250B-A1DC-46CF-BBCE-21F4326EA4D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E780250B-A1DC-46CF-BBCE-21F4326EA4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E780250B-A1DC-46CF-BBCE-21F4326EA4D2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{E780250B-A1DC-46CF-BBCE-21F4326EA4D2}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal
