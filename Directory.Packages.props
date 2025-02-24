@@ -4,10 +4,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
+    <PackageVersion Include="AspNet.Security.OAuth.Discord" Version="9.0.0" />
     <PackageVersion Include="I18Next.Net.Extensions" Version="1.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
+    <PackageVersion Include="Remora.Discord" Version="2025.1.0" />
   </ItemGroup>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>

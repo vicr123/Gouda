@@ -1,5 +1,12 @@
+using AspNet.Security.OAuth.Discord;
 using Gouda.Database;
 using Gouda.ServiceDefaults;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.HttpOverrides;
+using Remora.Discord.API.Abstractions.Rest;
+using Remora.Discord.Caching.API;
+using Remora.Discord.Hosting.Extensions;
+using Remora.Discord.Rest.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +21,46 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddControllers();
 
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+});
+
+builder.Services.AddAuthentication(o =>
+{
+    o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    o.DefaultChallengeScheme = DiscordAuthenticationDefaults.AuthenticationScheme;
+})
+    .AddCookie()
+    .AddDiscord(o =>
+    {
+        o.ClientId = builder.Configuration["Gouda:ClientId"]!;
+        o.ClientSecret = builder.Configuration["Gouda:ClientSecret"]!;
+        o.CallbackPath = "/api/auth/callback";
+        o.AccessDeniedPath = "/";
+        o.ReturnUrlParameter = string.Empty;
+        o.SaveTokens = true;
+    });
+
+builder.Services.AddDiscordService(_ => builder.Configuration["Gouda:DiscordToken"]!);
+
+builder.Services
+    .Decorate<IDiscordRestChannelAPI, CachingDiscordRestChannelAPI>()
+    .Decorate<IDiscordRestEmojiAPI, CachingDiscordRestEmojiAPI>()
+    .Decorate<IDiscordRestGuildAPI, CachingDiscordRestGuildAPI>()
+    .Decorate<IDiscordRestInteractionAPI, CachingDiscordRestInteractionAPI>()
+    .Decorate<IDiscordRestInviteAPI, CachingDiscordRestInviteAPI>()
+    .Decorate<IDiscordRestOAuth2API, CachingDiscordRestOAuth2API>()
+    .Decorate<IDiscordRestTemplateAPI, CachingDiscordRestTemplateAPI>()
+    // .Decorate<IDiscordRestUserAPI, CachingDiscordRestUserAPI>()
+    .Decorate<IDiscordRestVoiceAPI, CachingDiscordRestVoiceAPI>()
+    .Decorate<IDiscordRestWebhookAPI, CachingDiscordRestWebhookAPI>();
+
 builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda");
 
 var app = builder.Build();
 
+app.UseForwardedHeaders();
 app.UseDefaultFiles();
 app.MapStaticAssets();
 
@@ -29,22 +72,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-string[] summaries = ["Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"];
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
-
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.MapFallbackToFile("/index.html");
@@ -52,8 +80,3 @@ app.MapFallbackToFile("/index.html");
 app.MapDefaultEndpoints();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

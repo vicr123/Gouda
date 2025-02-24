@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "schema": "openapi-typescript http://localhost:5573/openapi/v1.json -o src/server-schema.d.ts"
   },
   "dependencies": {
     "@base-ui-components/react": "^1.0.0-alpha.6",
@@ -16,7 +17,8 @@
     "i18next-http-backend": "^3.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-i18next": "^15.4.1"
+    "react-i18next": "^15.4.1",
+    "openapi-fetch": "^0.13.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
@@ -34,7 +36,8 @@
     "prettier": "^3.5.2",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.22.0",
-    "vite": "^6.1.0"
+    "vite": "^6.1.0",
+    "openapi-typescript": "^7.6.1"
   },
   "packageManager": "pnpm@10.2.1"
 }

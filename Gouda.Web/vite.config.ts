@@ -58,9 +58,12 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            "^/weatherforecast": {
+            "^/api": {
                 target,
                 secure: false,
+                headers: {
+                    "X-Forwarded-Proto": "https",
+                },
             },
         },
         port: 5173,

@@ -1,0 +1,7 @@
+.separator[data-orientation="horizontal"] {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.separator[data-orientation="vertical"] {
+    border-right: 1px solid var(--border-color);
+}

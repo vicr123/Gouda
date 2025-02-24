@@ -7,8 +7,8 @@ body {
     --foreground-color: white;
     --border-color: rgba(255, 255, 255, 25%);
     --backdrop-filter: blur(20px);
-    --hover-background-color: var(--foreground-color);
-    --hover-foreground-color: var(--background-color);
+    --hover-background-color: rgba(255, 255, 255, 10%);
+    --hover-foreground-color: var(--foreground-color);
     
     --padding: 4px;
     --border-radius: 4px;

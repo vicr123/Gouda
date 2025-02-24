@@ -6,9 +6,12 @@
     height: 100dvh;
 }
 
-.sidebar {
-    grid-area: sidebar;
-    border-right: 1px solid var(--border-color);
+.rootLoggedOut {
+    display: grid;
+    grid-template-areas: "topbar padding" "main padding";
+    grid-template-columns: 900px 1fr;
+    grid-template-rows: max-content 1fr;
+    height: 100dvh;
 }
 
 .main {

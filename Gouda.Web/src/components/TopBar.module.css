@@ -12,3 +12,13 @@
 .userButton {
     grid-area: user;
 }
+
+.icon {
+    grid-area: icon;
+}
+
+.userMenu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding);
+}

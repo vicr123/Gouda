@@ -1,0 +1,23 @@
+.sidebar {
+    grid-area: sidebar;
+    border-right: 1px solid var(--border-color);
+    
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding);
+    gap: var(--padding);
+}
+
+.sidebarItem {
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.sidebarItem:hover {
+    padding: var(--padding);
+    border: 1px solid var(--border-color);
+    background: var(--hover-background-color);
+    color: var(--hover-foreground-color);
+}

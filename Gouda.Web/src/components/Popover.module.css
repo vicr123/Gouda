@@ -1,0 +1,15 @@
+.popup {
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    
+    padding: var(--padding);
+
+    transition: transform 150ms, opacity 150ms;
+    transform-origin: top center;
+
+    &[data-starting-style], &[data-ending-style] {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}

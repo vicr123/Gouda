@@ -2,7 +2,7 @@ import { ComponentProps, ReactNode } from "react";
 import Styles from "./Button.module.css";
 
 interface ButtonProps extends ComponentProps<"button"> {
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
 }
 
