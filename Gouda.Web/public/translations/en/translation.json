@@ -1,4 +1,8 @@
 {
   "LOG_IN": "Log In",
-  "LOG_OUT": "Log Out"
+  "LOG_OUT": "Log Out",
+  "USER_SETTINGS": "User Settings",
+  "PORTABLE_PINS": "Portable Pins",
+  "LOCALE": "Locale",
+  "LOCALE_WARNING": "Changing the setting here will change the locale for the web portal and Gouda."
 }

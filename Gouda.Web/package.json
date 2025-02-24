@@ -11,7 +11,7 @@
     "schema": "openapi-typescript http://localhost:5573/openapi/v1.json -o src/server-schema.d.ts"
   },
   "dependencies": {
-    "@base-ui-components/react": "^1.0.0-alpha.6",
+    "@base-ui-components/react": "1.0.0-alpha.5",
     "@tanstack/react-router": "^1.109.2",
     "i18next": "^24.2.2",
     "i18next-http-backend": "^3.0.2",

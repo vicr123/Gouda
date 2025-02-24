@@ -17,6 +17,8 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Gouda.Web", "Gouda.Web\Goud
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.MigrationService", "Gouda.MigrationService\Gouda.MigrationService.csproj", "{73BA81F7-ABA4-4648-913A-A1EFA4CCD88C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.BotLocales", "Gouda.BotLocales\Gouda.BotLocales.csproj", "{BE661349-2B45-413D-A9AF-3E99D0FC3BFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +56,9 @@ Global
 		{73BA81F7-ABA4-4648-913A-A1EFA4CCD88C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73BA81F7-ABA4-4648-913A-A1EFA4CCD88C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73BA81F7-ABA4-4648-913A-A1EFA4CCD88C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE661349-2B45-413D-A9AF-3E99D0FC3BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE661349-2B45-413D-A9AF-3E99D0FC3BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE661349-2B45-413D-A9AF-3E99D0FC3BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE661349-2B45-413D-A9AF-3E99D0FC3BFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

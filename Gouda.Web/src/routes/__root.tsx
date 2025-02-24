@@ -1,16 +1,22 @@
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import Styles from "./root.module.css";
 import { TopBar } from "../components/TopBar.tsx";
 import { RestClient } from "../restClient.ts";
 import { Sidebar } from "../components/Sidebar.tsx";
+import {
+    LoginUserContext,
+    LoginUserContextType,
+} from "../context/LoginUserContext.ts";
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+    user: LoginUserContextType;
+}>()({
     component: () => {
         const data = Route.useLoaderData();
 
         return (
-            <>
+            <LoginUserContext value={data.user}>
                 <div
                     className={
                         data.user.loggedIn ? Styles.root : Styles.rootLoggedOut
@@ -25,7 +31,7 @@ export const Route = createRootRoute({
                     </div>
                 </div>
                 <TanStackRouterDevtools />
-            </>
+            </LoginUserContext>
         );
     },
     loader: async () => {
@@ -34,13 +40,13 @@ export const Route = createRootRoute({
         return {
             user:
                 response.status == 200
-                    ? {
+                    ? ({
                           loggedIn: true,
                           username: data!.username,
-                      }
-                    : {
+                      } satisfies LoginUserContextType)
+                    : ({
                           loggedIn: false,
-                      },
+                      } satisfies LoginUserContextType),
         };
     },
 });

@@ -14,10 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Gouda.BotLocales\Gouda.BotLocales.csproj" />
       <ProjectReference Include="..\Gouda.Database\Gouda.Database.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="Translations\**\*.json" />
     </ItemGroup>
 </Project>

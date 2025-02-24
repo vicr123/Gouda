@@ -11,6 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Gouda.BotLocales\Gouda.BotLocales.csproj" />
         <ProjectReference Include="..\Gouda.Database\Gouda.Database.csproj" />
         <ProjectReference Include="..\Gouda.ServiceDefaults\Gouda.ServiceDefaults.csproj"/>
     </ItemGroup>

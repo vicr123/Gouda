@@ -11,16 +11,7 @@ public class BotResourcesTranslationBackend : ITranslationBackend
 
     public async Task<ITranslationTree> LoadNamespaceAsync(string language, string @namespace)
     {
-        var assembly = Assembly.GetExecutingAssembly();
-        var resourceName = $"Gouda.Bot.Translations.{language}.{@namespace}.json";
-
-        await using var stream = assembly.GetManifestResourceStream(resourceName);
-        if (stream == null)
-        {
-            return _treeBuilderFactory.Create().Build();
-        }
-
-        var json = await JsonSerializer.DeserializeAsync<Dictionary<string, JsonElement>>(stream);
+        var json = await BotLocales.BotLocales.ReadTranslationFileAsync(language, @namespace);
         if (json == null)
         {
             return _treeBuilderFactory.Create().Build();

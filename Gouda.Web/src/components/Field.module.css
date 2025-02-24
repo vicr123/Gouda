@@ -1,0 +1,11 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding);
+    
+    padding-bottom: var(--element-spacing);
+}
+
+.description {
+    margin: 0;
+}

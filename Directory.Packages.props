@@ -5,6 +5,7 @@
   <ItemGroup>
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
     <PackageVersion Include="AspNet.Security.OAuth.Discord" Version="9.0.0" />
+    <PackageVersion Include="FlexLabs.EntityFrameworkCore.Upsert" Version="8.1.2" />
     <PackageVersion Include="I18Next.Net.Extensions" Version="1.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2" />

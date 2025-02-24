@@ -1,4 +1,5 @@
 using AspNet.Security.OAuth.Discord;
+using Gouda.ApiService.Services;
 using Gouda.Database;
 using Gouda.ServiceDefaults;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -43,7 +44,8 @@ builder.Services.AddAuthentication(o =>
     });
 
 builder.Services.AddDiscordService(_ => builder.Configuration["Gouda:DiscordToken"]!);
-
+builder.Services.AddScoped<DiscordUserService>();
+builder.Services.AddHttpContextAccessor();
 builder.Services
     .Decorate<IDiscordRestChannelAPI, CachingDiscordRestChannelAPI>()
     .Decorate<IDiscordRestEmojiAPI, CachingDiscordRestEmojiAPI>()

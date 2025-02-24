@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@base-ui-components/react':
-        specifier: ^1.0.0-alpha.6
-        version: 1.0.0-alpha.6(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: 1.0.0-alpha.5
+        version: 1.0.0-alpha.5(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@tanstack/react-router':
         specifier: ^1.109.2
         version: 1.109.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -186,8 +186,8 @@ packages:
     resolution: {integrity: sha512-Y3IR1cRnOxOCDvMmNiym7XpXQ93iGDDPHx+Zj+NM+rg0fBaShfQLkg+hKPaZCEvg5N/LeCo4+Rj/i3FuJsIQaw==}
     engines: {node: '>=6.9.0'}
 
-  '@base-ui-components/react@1.0.0-alpha.6':
-    resolution: {integrity: sha512-0Jkp8twk3z3TJNOTUyzrK1dPOF7w1/LH+TYksuZc8TyJzuJx8V2O15BgpMJczvFdSR2ncdN1WQxsTe2ayYJ6cw==}
+  '@base-ui-components/react@1.0.0-alpha.5':
+    resolution: {integrity: sha512-/hkuXkfiuMZpX1rp1alx2QAah7dUnojgUxtmbEjxYaeS7xiifw9N645ek8e3Dd3QPhVYmDZYfqj/aYUS0IwIqA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@types/react': ^17 || ^18 || ^19
@@ -1860,7 +1860,7 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
-  '@base-ui-components/react@1.0.0-alpha.6(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@base-ui-components/react@1.0.0-alpha.5(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@floating-ui/react': 0.27.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)

@@ -9,13 +9,17 @@ body {
     --backdrop-filter: blur(20px);
     --hover-background-color: rgba(255, 255, 255, 10%);
     --hover-foreground-color: var(--foreground-color);
+    --body-font-family: "Space Grotesk", sans-serif;
+    --body-font-size: 12pt;
     
     --padding: 4px;
+    --element-spacing: 12px;
     --border-radius: 4px;
     
     color: var(--foreground-color);
     
-    font-family: "Space Grotesk", sans-serif;
+    font-family: var(--body-font-family);
+    font-size: var(--body-font-size);
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -29,4 +33,10 @@ body {
 
 * {
     box-sizing: border-box;
+}
+
+h1 {
+    font-weight: 300;
+    margin-top: 20px;
+    font-size: 25pt;
 }
