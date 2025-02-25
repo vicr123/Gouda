@@ -1,6 +1,7 @@
 import { Field as BaseField } from "@base-ui-components/react";
 import { ComponentProps } from "react";
 import Styles from "./Field.module.css";
+import { Input } from "./Input.tsx";
 
 export const Field = {
     Root: ({ className, ...props }: ComponentProps<typeof BaseField.Root>) => (
@@ -12,8 +13,11 @@ export const Field = {
     Label: ({ ...props }: ComponentProps<typeof BaseField.Label>) => (
         <BaseField.Label {...props} />
     ),
-    Control: ({ ...props }: ComponentProps<typeof BaseField.Control>) => (
-        <BaseField.Control {...props} />
+    Control: ({
+        render,
+        ...props
+    }: ComponentProps<typeof BaseField.Control>) => (
+        <BaseField.Control {...props} render={render ?? <Input />} />
     ),
     Error: ({ ...props }: ComponentProps<typeof BaseField.Error>) => (
         <BaseField.Error {...props} />

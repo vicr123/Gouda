@@ -1,0 +1,27 @@
+.locationButton {
+    border: 1px solid var(--border-color);
+}
+
+.mapPopup {
+    width: 90vw;
+    max-width: 600px;
+}
+
+.mapContainer {
+    height: 300px;
+    width: 100%;
+}
+
+.locationWrapper {
+    display: flex;
+    gap: var(--padding);
+}
+
+.locationButtons {
+    display: flex;
+    gap: var(--padding);
+}
+
+.clearLocationButton {
+    justify-self: flex-start;
+}

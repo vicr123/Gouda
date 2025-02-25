@@ -9,8 +9,9 @@
     padding: var(--padding);
 }
 
-.userButton {
+.userButton.userButton {
     grid-area: user;
+    border: 1px solid transparent;
 }
 
 .icon {

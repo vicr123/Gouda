@@ -4,5 +4,13 @@
   "USER_SETTINGS": "User Settings",
   "PORTABLE_PINS": "Portable Pins",
   "LOCALE": "Locale",
-  "LOCALE_WARNING": "Changing the setting here will change the locale for the web portal and Gouda."
+  "LOCALE_WARNING": "Changing the setting here will change the locale for the web portal and Gouda.",
+  "LOCATION": "Location",
+  "LOCATION_SET_PROMPT": "Set Location...",
+  "LOCATION_SET_TITLE": "Set Location",
+  "LATITUDE": "Latitude",
+  "LONGITUDE": "Longitude",
+  "CLEAR_LOCATION_BUTTON": "Clear Location",
+  "CLOSE": "Close",
+  "SET_LOCATION_BUTTON": "Set Location"
 }

@@ -5,10 +5,17 @@
     border-radius: var(--border-radius);
     font-family: var(--body-font-family);
     font-size: var(--body-font-size);
-    border: 1px solid transparent;
+    border: 1px solid var(--border-color);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:hover:not(:disabled) {
+        background: var(--hover-background-color);
+    }
+    &:disabled {
+        color: var(--foreground-disabled-color);
+    }
 }
 
-.button:hover {
-    background: var(--hover-background-color);
-    border: 1px solid var(--border-color);
-}

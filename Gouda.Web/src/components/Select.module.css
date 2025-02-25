@@ -10,6 +10,7 @@
     color: var(--foreground-color);
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
+    gap: var(--padding);
     
     cursor: default;
 }

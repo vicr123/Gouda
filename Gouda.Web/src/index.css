@@ -5,10 +5,12 @@ body {
     
     --background-color: black;
     --foreground-color: white;
+    --foreground-disabled-color: rgba(255, 255, 255, 0.7);
     --border-color: rgba(255, 255, 255, 25%);
     --backdrop-filter: blur(20px);
     --hover-background-color: rgba(255, 255, 255, 10%);
     --hover-foreground-color: var(--foreground-color);
+    --focus-decoration-color: rgb(0, 150, 255);
     --body-font-family: "Space Grotesk", sans-serif;
     --body-font-size: 12pt;
     
