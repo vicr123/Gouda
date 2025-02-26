@@ -15,6 +15,7 @@ import { Route as SettingsImport } from './routes/settings'
 import { Route as PinsImport } from './routes/pins'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as GuildsGuildIdImport } from './routes/guilds.$guildId'
 
 // Create/Update Routes
 
@@ -39,6 +40,12 @@ const AboutRoute = AboutImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const GuildsGuildIdRoute = GuildsGuildIdImport.update({
+  id: '/guilds/$guildId',
+  path: '/guilds/$guildId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,6 +81,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsImport
       parentRoute: typeof rootRoute
     }
+    '/guilds/$guildId': {
+      id: '/guilds/$guildId'
+      path: '/guilds/$guildId'
+      fullPath: '/guilds/$guildId'
+      preLoaderRoute: typeof GuildsGuildIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -84,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/pins': typeof PinsRoute
   '/settings': typeof SettingsRoute
+  '/guilds/$guildId': typeof GuildsGuildIdRoute
 }
 
 export interface FileRoutesByTo {
@@ -91,6 +106,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/pins': typeof PinsRoute
   '/settings': typeof SettingsRoute
+  '/guilds/$guildId': typeof GuildsGuildIdRoute
 }
 
 export interface FileRoutesById {
@@ -99,14 +115,15 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/pins': typeof PinsRoute
   '/settings': typeof SettingsRoute
+  '/guilds/$guildId': typeof GuildsGuildIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/pins' | '/settings'
+  fullPaths: '/' | '/about' | '/pins' | '/settings' | '/guilds/$guildId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/pins' | '/settings'
-  id: '__root__' | '/' | '/about' | '/pins' | '/settings'
+  to: '/' | '/about' | '/pins' | '/settings' | '/guilds/$guildId'
+  id: '__root__' | '/' | '/about' | '/pins' | '/settings' | '/guilds/$guildId'
   fileRoutesById: FileRoutesById
 }
 
@@ -115,6 +132,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   PinsRoute: typeof PinsRoute
   SettingsRoute: typeof SettingsRoute
+  GuildsGuildIdRoute: typeof GuildsGuildIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -122,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   PinsRoute: PinsRoute,
   SettingsRoute: SettingsRoute,
+  GuildsGuildIdRoute: GuildsGuildIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -137,7 +156,8 @@ export const routeTree = rootRoute
         "/",
         "/about",
         "/pins",
-        "/settings"
+        "/settings",
+        "/guilds/$guildId"
       ]
     },
     "/": {
@@ -151,6 +171,9 @@ export const routeTree = rootRoute
     },
     "/settings": {
       "filePath": "settings.tsx"
+    },
+    "/guilds/$guildId": {
+      "filePath": "guilds.$guildId.tsx"
     }
   }
 }

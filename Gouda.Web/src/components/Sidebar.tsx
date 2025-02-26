@@ -1,10 +1,12 @@
 import Styles from "./Sidebar.module.css";
 import { ReactNode } from "react";
 import { Separator } from "./Separator.tsx";
-import { Link } from "@tanstack/react-router";
+import { Await, getRouteApi, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
 export function Sidebar() {
+    const routeApi = getRouteApi("__root__");
+    const data = routeApi.useLoaderData();
     const { t } = useTranslation();
 
     return (
@@ -15,6 +17,15 @@ export function Sidebar() {
             <SidebarItem to={"/pins"}>{t("PORTABLE_PINS")}</SidebarItem>
             <Separator />
             <span>{t("Servers")}</span>
+            <Await promise={data.guild}>
+                {(data) =>
+                    data?.map((guild) => (
+                        <SidebarItem to={`/guilds/${guild.id}`}>
+                            {guild.name}
+                        </SidebarItem>
+                    ))
+                }
+            </Await>
         </div>
     );
 }

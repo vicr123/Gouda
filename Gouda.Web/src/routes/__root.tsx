@@ -1,4 +1,8 @@
-import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
+import {
+    Await,
+    createRootRouteWithContext,
+    Outlet,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import Styles from "./root.module.css";
 import { TopBar } from "../components/TopBar.tsx";
@@ -16,37 +20,50 @@ export const Route = createRootRouteWithContext<{
         const data = Route.useLoaderData();
 
         return (
-            <LoginUserContext value={data.user}>
-                <div
-                    className={
-                        data.user.loggedIn ? Styles.root : Styles.rootLoggedOut
-                    }
-                >
-                    <div className={Styles.background} />
-                    <div className={Styles.backgroundFilter} />
-                    <TopBar />
-                    {data.user.loggedIn && <Sidebar />}
-                    <div className={Styles.main}>
-                        <Outlet />
-                    </div>
-                </div>
-                <TanStackRouterDevtools />
-            </LoginUserContext>
+            <Await
+                promise={data.user}
+                fallback={<div className={Styles.background} />}
+            >
+                {(user) => (
+                    <LoginUserContext value={user}>
+                        <div
+                            className={
+                                user.loggedIn
+                                    ? Styles.root
+                                    : Styles.rootLoggedOut
+                            }
+                        >
+                            <div className={Styles.background} />
+                            <div className={Styles.backgroundFilter} />
+                            <TopBar />
+                            {user.loggedIn && <Sidebar />}
+                            <div className={Styles.main}>
+                                <Outlet />
+                            </div>
+                        </div>
+                        <TanStackRouterDevtools />
+                    </LoginUserContext>
+                )}
+            </Await>
         );
     },
     loader: async () => {
-        const { data, response } = await RestClient.GET("/api/user");
-
         return {
-            user:
-                response.status == 200
-                    ? ({
-                          loggedIn: true,
-                          username: data!.username,
-                      } satisfies LoginUserContextType)
-                    : ({
-                          loggedIn: false,
-                      } satisfies LoginUserContextType),
+            user: RestClient.GET("/api/user").then(
+                ({ data: userData, response: userResponse }) =>
+                    userResponse.status == 200
+                        ? ({
+                              loggedIn: true,
+                              username: userData!.username,
+                          } satisfies LoginUserContextType)
+                        : ({
+                              loggedIn: false,
+                          } satisfies LoginUserContextType),
+            ),
+            guild: RestClient.GET("/api/guild").then(
+                (response) => response.data,
+            ),
         };
     },
+    staleTime: 60 * 60 * 1000,
 });

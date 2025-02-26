@@ -21,4 +21,9 @@ public static class RemoraExtensions
     {
         return ((IRestCustomizable)customisable).Userify(httpContext);
     }
+
+    public static Task<RestRequestCustomization> Userify(this IDiscordRestGuildAPI customisable, HttpContext httpContext)
+    {
+        return ((IRestCustomizable)customisable).Userify(httpContext);
+    }
 }

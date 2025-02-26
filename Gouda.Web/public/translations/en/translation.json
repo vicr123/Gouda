@@ -13,5 +13,12 @@
   "CLEAR_LOCATION_BUTTON": "Clear Location",
   "CLOSE": "Close",
   "SET_LOCATION_BUTTON": "Set Location",
-  "USE_DISCORD_LANGUAGE": "Use Discord Language"
+  "USE_DISCORD_LANGUAGE": "Use Discord Language",
+  "INVITE_REQUIRED": "Gouda is not in this server. Join Gouda to this server, and then reload the page.",
+  "DISABLED": "Disabled",
+  "ALERT_CHANNEL": "Alert Channel",
+  "ALERT_CHANNEL_DESCRIPTION": "Alerts such as when a user joins/leaves the server",
+  "CHAT_LOG_CHANNEL": "Chat Log Channel",
+  "CHAT_LOG_CHANNEL_DESCRIPTION": "Copies of edited/deleted messages",
+  "SUPERPIN_CHANNEL": "Superpin Channel"
 }

@@ -64,6 +64,12 @@ export const Select = {
             className={[Styles.item, className].join(" ")}
         />
     ),
+    CategoryHeader: ({ className, ...props }: ComponentProps<"div">) => (
+        <div
+            {...props}
+            className={[Styles.categoryHeader, className].join(" ")}
+        />
+    ),
     ItemText: ({
         className,
         ...props

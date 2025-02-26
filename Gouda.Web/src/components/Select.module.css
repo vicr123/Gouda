@@ -70,3 +70,8 @@
 .itemText {
     grid-column: 2 / 3;
 }
+
+.categoryHeader {
+    display: grid;
+    grid-column: 1 / 3;
+}

@@ -17,4 +17,8 @@ public class GoudaDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<GeonameDate> GeonameDate { get; set; }
 
     public DbSet<GeonameAdmin1Codes> GeonameAdmin1Codes { get; set; }
+
+    public DbSet<GuildChannel> GuildChannels { get; set; }
+
+    public DbSet<GuildPin> GuildPins { get; set; }
 }

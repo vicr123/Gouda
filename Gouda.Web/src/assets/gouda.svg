@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 8.4666665 8.4666666"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   sodipodi:docname="gouda.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="37.775533"
+     inkscape:cx="16.015658"
+     inkscape:cy="21.336562"
+     inkscape:window-width="3840"
+     inkscape:window-height="2080"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="0.26458333"
+       spacingy="0.26458333"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="4"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+    <inkscape:grid
+       id="grid2"
+       units="px"
+       originx="0.13229166"
+       originy="0.13229166"
+       spacingx="7.3436626e-18"
+       spacingy="7.3436626e-18"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="1"
+       dotted="true"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient4"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#ffca93;stop-opacity:1;"
+         offset="0"
+         id="stop4" />
+      <stop
+         style="stop-color:#d8994a;stop-opacity:0;"
+         offset="1"
+         id="stop5" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4"
+       id="linearGradient5"
+       x1="5.362741"
+       y1="3.4042215"
+       x2="5.8736591"
+       y2="3.9151397"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4"
+       id="linearGradient9"
+       x1="6.086916"
+       y1="6.8136778"
+       x2="6.5867996"
+       y2="7.3135614"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffe2d7;stroke-width:0.264583;fill-opacity:1"
+       id="rect1"
+       width="8.4666662"
+       height="8.4666662"
+       x="0"
+       y="0" />
+    <path
+       id="path3"
+       style="fill:url(#linearGradient5);fill-opacity:1;stroke-width:0.264583"
+       d="M 5.3159546 1.2448853 L 4.2281657 4.2333333 L 4.8916911 4.8968587 L 6.9298096 2.859257 L 5.3159546 1.2448853 z " />
+    <path
+       id="path5"
+       style="fill:url(#linearGradient9);fill-opacity:1;stroke-width:0.264583"
+       d="M 7.4083333 4.2333333 L 6.7871826 5.6130941 L 2.1228678 6.6166504 L 4.1878581 8.6816406 L 5.0281169 9.5218994 L 5.2384399 9.7322225 L 9.0728312 5.8978312 L 7.4083333 4.2333333 z " />
+    <path
+       style="fill:#d8994a;fill-opacity:1;stroke-width:0.264583"
+       id="path2"
+       sodipodi:type="arc"
+       sodipodi:cx="4.228292"
+       sodipodi:cy="4.2333331"
+       sodipodi:rx="3.1800411"
+       sodipodi:ry="3.1800411"
+       sodipodi:start="0"
+       sodipodi:end="5.0614548"
+       sodipodi:arc-type="slice"
+       d="M 7.4083331,4.2333331 A 3.1800411,3.1800411 0 0 1 5.1845488,7.2661922 3.1800411,3.1800411 0 0 1 1.6233549,6.0573298 3.1800411,3.1800411 0 0 1 1.7053957,2.2974468 3.1800411,3.1800411 0 0 1 5.31593,1.2450719 L 4.228292,4.2333331 Z" />
+  </g>
+</svg>

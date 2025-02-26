@@ -4,8 +4,10 @@ using Gouda.Database;
 using Gouda.ServiceDefaults;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Remora.Discord.API.Abstractions.Rest;
 using Remora.Discord.Caching.API;
+using Remora.Discord.Caching.Services;
 using Remora.Discord.Hosting.Extensions;
 using Remora.Discord.Rest.Extensions;
 
@@ -41,11 +43,17 @@ builder.Services.AddAuthentication(o =>
         o.AccessDeniedPath = "/";
         o.ReturnUrlParameter = string.Empty;
         o.SaveTokens = true;
+
+        o.Scope.Add("identify");
+        o.Scope.Add("guilds");
     });
 
 builder.Services.AddDiscordService(_ => builder.Configuration["Gouda:DiscordToken"]!);
 builder.Services.AddScoped<DiscordUserService>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.TryAddSingleton<CacheService>();
+builder.Services.AddOptions<CacheSettings>();
+builder.Services.AddSingleton<ImmutableCacheSettings>();
 builder.Services
     .Decorate<IDiscordRestChannelAPI, CachingDiscordRestChannelAPI>()
     .Decorate<IDiscordRestEmojiAPI, CachingDiscordRestEmojiAPI>()
