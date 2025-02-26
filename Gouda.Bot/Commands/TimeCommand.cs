@@ -41,7 +41,7 @@ public class TimeCommand(GoudaDbContext dbContext, GeocodingService geocodingSer
                 geonameId = await geocodingService.ClosestCity(interactionUserId.Value);
             }
 
-            var geoname = await geocodingService.CityInformation(geonameId, "en");
+            var geoname = await geocodingService.CityInformation(geonameId);
 
             var localTime = TimeZoneInfo.ConvertTime(DateTimeOffset.Now, TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone));
 

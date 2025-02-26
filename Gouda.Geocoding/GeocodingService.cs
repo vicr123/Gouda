@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using Gouda.Database;
 using Microsoft.EntityFrameworkCore;
 using Remora.Discord.API.Abstractions.Objects;
@@ -80,7 +81,7 @@ public class GeocodingService(GoudaDbContext dbContext)
                     admin1 != null && x.Admin1 != null && y != null && (y.AlternateName.ToLower().StartsWith(admin1.ToLower()) ||
                                                            x.Admin1.ToLower().StartsWith(admin1.ToLower()) ||
                                                            x.CountryCode.ToLower().StartsWith(admin1.ToLower()))
-                        ? x.Population * 1000000
+                        ? x.Population * 1000000000
                         : x.Population,
             })
             .OrderByDescending(x => x.Population)
@@ -94,10 +95,10 @@ public class GeocodingService(GoudaDbContext dbContext)
         return alternateNames.Id;
     }
 
-    public async Task<LocalisedGeoname> CityInformation(ulong id, string language)
+    public async Task<LocalisedGeoname> CityInformation(ulong id)
     {
         var geoname = await dbContext.Geonames.SingleAsync(x => x.Id == id);
-        var alternateNames = dbContext.GeonameAlternateNames.Where(x => x.GeonameId == id && x.Language == language);
+        var alternateName = await BestAlternateName(id);
 
         var admin1 =
             await dbContext.GeonameAdmin1Codes.FirstOrDefaultAsync(x =>
@@ -105,8 +106,27 @@ public class GeocodingService(GoudaDbContext dbContext)
         var admin1Short =
             admin1 is null ? null : await dbContext.GeonameAlternateNames.FirstOrDefaultAsync(x =>
                 x.GeonameId == admin1.GeonameId && x.Language == "abbr");
+        var admin1AlternateName = admin1 is null ? null : await BestAlternateName(admin1.GeonameId);
 
-        return new(geoname.Name, admin1?.Name, admin1Short?.AlternateName, geoname.Timezone, geoname.CountryCode);
+        return new(alternateName ?? geoname.Name, admin1AlternateName ?? admin1?.Name, admin1Short?.AlternateName, geoname.Timezone, geoname.CountryCode);
+    }
+
+    private async Task<string?> BestAlternateName(ulong id)
+    {
+        var fullLang = CultureInfo.CurrentCulture.Name;
+        var lang = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+
+        var alternateName = await dbContext.GeonameAlternateNames
+            .Where(x => x.GeonameId == id && (x.Language == lang || x.Language == "en" || x.Language == fullLang))
+            .Select(x => new
+            {
+                x.AlternateName,
+                Score = 1 * (x.Language == fullLang ? 1000 : 1) * (x.Language == lang ? 100 : 1) * (x.IsPreferred ? 10 : 1),
+            })
+            .OrderByDescending(x => x.Score)
+            .FirstOrDefaultAsync();
+
+        return alternateName?.AlternateName;
     }
 
     public record LocalisedGeoname(string Name, string? Admin1, string? Admin1ShortName, string Timezone, string Country);
