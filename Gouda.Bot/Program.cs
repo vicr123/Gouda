@@ -1,6 +1,7 @@
 using Gouda.Bot;
 using Gouda.Bot.Services;
 using Gouda.Database;
+using Gouda.Geocoding;
 using I18Next.Net.Extensions;
 using I18Next.Net.Plugins;
 using Remora.Discord.API.Abstractions.Rest;
@@ -22,7 +23,8 @@ builder.Services
     .AddDiscordCommands(enableSlash: true)
     .AddInteractivity()
     .AddCommandGroupsFromAssembly(typeof(Program).Assembly)
-    .AddScoped<TranslationService>();
+    .AddScoped<TranslationService>()
+    .AddGeocoding();
 
 builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda");
 

@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.MigrationService", "G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.BotLocales", "Gouda.BotLocales\Gouda.BotLocales.csproj", "{BE661349-2B45-413D-A9AF-3E99D0FC3BFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gouda.Geocoding", "Gouda.Geocoding\Gouda.Geocoding.csproj", "{74237635-772D-4939-9A78-111B82CBAE0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{BE661349-2B45-413D-A9AF-3E99D0FC3BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE661349-2B45-413D-A9AF-3E99D0FC3BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE661349-2B45-413D-A9AF-3E99D0FC3BFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74237635-772D-4939-9A78-111B82CBAE0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74237635-772D-4939-9A78-111B82CBAE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74237635-772D-4939-9A78-111B82CBAE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74237635-772D-4939-9A78-111B82CBAE0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

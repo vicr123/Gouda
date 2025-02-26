@@ -8,11 +8,10 @@ import Icon from "../components/Icon.tsx";
 import { Button } from "../components/Button.tsx";
 import Styles from "./Settings.module.css";
 import { Dialog } from "../components/Dialog.tsx";
-import { useEffect, useOptimistic, useRef, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { useEffect, useRef, useState } from "react";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { MapRef } from "react-leaflet/MapContainer";
-import { LeafletMouseEvent } from "leaflet";
 import { Input } from "../components/Input.tsx";
 
 export const Route = createFileRoute("/settings")({

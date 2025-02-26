@@ -5,12 +5,17 @@
   <ItemGroup>
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
     <PackageVersion Include="AspNet.Security.OAuth.Discord" Version="9.0.0" />
+    <PackageVersion Include="EFCore.BulkExtensions.PostgreSql" Version="9.0.1" />
     <PackageVersion Include="FlexLabs.EntityFrameworkCore.Upsert" Version="8.1.2" />
     <PackageVersion Include="I18Next.Net.Extensions" Version="1.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
+    <PackageVersion Include="NGeoNamesCore" Version="1.6.2" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
     <PackageVersion Include="Remora.Discord" Version="2025.1.0" />
+    <PackageVersion Include="System.Linq.Async" Version="6.0.1" />
+    <PackageVersion Include="System.Reactive.Linq" Version="6.0.1" />
   </ItemGroup>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
