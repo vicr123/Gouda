@@ -2,8 +2,6 @@ using Gouda.Bot;
 using Gouda.Bot.Services;
 using Gouda.Database;
 using Gouda.Geocoding;
-using I18Next.Net.Extensions;
-using I18Next.Net.Plugins;
 using Remora.Discord.API.Abstractions.Rest;
 using Remora.Discord.Caching.Extensions;
 using Remora.Discord.Commands.Extensions;

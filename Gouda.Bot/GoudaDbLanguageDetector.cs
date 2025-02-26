@@ -12,7 +12,17 @@ public class GoudaDbLanguageDetector(IInteractionCommandContext interactionConte
         var haveUserId = interactionContext.TryGetUserID(out var userId);
         if (haveUserId)
         {
-            return dbContext.Set<Locale>().FirstOrDefault(x => x.UserId == userId.Value)?.LocaleName ?? "en";
+            var localeName = dbContext.Set<Locale>().FirstOrDefault(x => x.UserId == userId.Value)?.LocaleName;
+            if (localeName is not null)
+            {
+                return localeName;
+            }
+        }
+
+        var discordLocale = interactionContext.Interaction.Locale;
+        if (discordLocale.HasValue)
+        {
+            return discordLocale.Value;
         }
 
         return "en";

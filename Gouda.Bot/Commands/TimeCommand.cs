@@ -1,4 +1,6 @@
 using System.ComponentModel;
+using System.Globalization;
+using Gouda.Bot.Services;
 using Gouda.Database;
 using Gouda.Geocoding;
 using Remora.Commands.Attributes;
@@ -11,7 +13,7 @@ using Remora.Results;
 
 namespace Gouda.Bot.Commands;
 
-public class TimeCommand(GoudaDbContext dbContext, GeocodingService geocodingService, IFeedbackService feedbackService, IInteractionContext interactionContext) : CommandGroup
+public class TimeCommand(GoudaDbContext dbContext, GeocodingService geocodingService, IFeedbackService feedbackService, IInteractionContext interactionContext, TranslationService translationService) : CommandGroup
 {
     [Command("time")]
     [Description("Get the time for a user")]

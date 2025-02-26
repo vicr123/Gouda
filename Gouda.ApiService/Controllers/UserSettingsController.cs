@@ -25,7 +25,7 @@ public class UserSettingsController(GoudaDbContext dbContext, DiscordUserService
 
         return Json(new GetUserSettingsResult
         {
-            Locale = locale?.LocaleName ?? "en",
+            Locale = locale?.LocaleName,
             AvailableLocales = BotLocales.BotLocales.AvailableLanguages(),
             Location = location is null ? null : new UserSettingsLocation
             {
@@ -55,6 +55,31 @@ public class UserSettingsController(GoudaDbContext dbContext, DiscordUserService
         {
             LocaleName = locale,
         }).RunAsync();
+        await dbContext.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [Route("locale")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> DeleteLocale()
+    {
+        var userId = await discordUserService.LoggedInUserIdAsync();
+        if (userId is null)
+        {
+            return Unauthorized();
+        }
+
+        var locale = await dbContext.Locales.FirstOrDefaultAsync(x => x.UserId == userId);
+        if (locale is null)
+        {
+            return NotFound();
+        }
+
+        dbContext.Locales.Remove(locale);
         await dbContext.SaveChangesAsync();
 
         return NoContent();
@@ -114,7 +139,7 @@ public class UserSettingsController(GoudaDbContext dbContext, DiscordUserService
 
     private class GetUserSettingsResult
     {
-        public required string Locale { get; set; }
+        public required string? Locale { get; set; }
 
         public required IEnumerable<string> AvailableLocales { get; set; }
 

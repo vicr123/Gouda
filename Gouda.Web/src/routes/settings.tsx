@@ -37,6 +37,11 @@ function RouteComponent() {
         });
     };
 
+    const clearLanguage = async () => {
+        await RestClient.DELETE("/api/usersettings/locale");
+        await router.invalidate();
+    };
+
     const setLocation = async (latitude: number, longitude: number) => {
         setUserLocation({ latitude, longitude });
         await RestClient.POST("/api/usersettings/location", {
@@ -66,11 +71,15 @@ function RouteComponent() {
                 <Field.Label>{t("LOCALE")}</Field.Label>
                 <Field.Control
                     render={
-                        <Select.Root<{ locale: string }>
+                        <Select.Root<{ locale: string | null }>
                             value={userLocale}
-                            onValueChange={(value) =>
-                                changeLanguage(value.locale)
-                            }
+                            onValueChange={(value) => {
+                                if (value.locale) {
+                                    void changeLanguage(value.locale);
+                                } else {
+                                    void clearLanguage();
+                                }
+                            }}
                         >
                             <Select.Trigger>
                                 <Select.Value placeholder={t("LOCALE")} />
@@ -81,6 +90,21 @@ function RouteComponent() {
                             <Select.Portal>
                                 <Select.Positioner>
                                     <Select.Popup>
+                                        <Select.Item
+                                            value={
+                                                userLocale.locale == null
+                                                    ? userLocale
+                                                    : { locale: null }
+                                            }
+                                            key={"null-locale"}
+                                        >
+                                            <Select.ItemIndicator>
+                                                <Icon icon={"dialog-ok"} />
+                                            </Select.ItemIndicator>
+                                            <Select.ItemText>
+                                                {t("USE_DISCORD_LANGUAGE")}
+                                            </Select.ItemText>
+                                        </Select.Item>
                                         {userSettings.availableLocales.map(
                                             (locale) => (
                                                 <Select.Item

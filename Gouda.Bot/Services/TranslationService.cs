@@ -13,14 +13,17 @@ public class TranslationService
     public TranslationService(IInteractionCommandContext interactionContext, GoudaDbContext dbContext)
     {
         var backend = new BotResourcesTranslationBackend();
+        var languageDetector = new GoudaDbLanguageDetector(interactionContext, dbContext);
         _i18Next = new I18NextNet(
             backend,
             new DefaultTranslator(backend),
-            new GoudaDbLanguageDetector(interactionContext, dbContext))
+            languageDetector)
         {
             FallbackLanguages = ["en"],
         };
         _i18Next.UseDetectedLanguage();
+
+        CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(languageDetector.GetLanguage());
     }
 
     public string this[string key] => _i18Next.T(key);

@@ -12,5 +12,6 @@
   "LONGITUDE": "Longitude",
   "CLEAR_LOCATION_BUTTON": "Clear Location",
   "CLOSE": "Close",
-  "SET_LOCATION_BUTTON": "Set Location"
+  "SET_LOCATION_BUTTON": "Set Location",
+  "USE_DISCORD_LANGUAGE": "Use Discord Language"
 }
