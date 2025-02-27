@@ -2,11 +2,13 @@ using Gouda.Bot;
 using Gouda.Bot.Services;
 using Gouda.Database;
 using Gouda.Geocoding;
+using Remora.Discord.API.Abstractions.Gateway.Commands;
 using Remora.Discord.API.Abstractions.Rest;
 using Remora.Discord.Caching.Extensions;
 using Remora.Discord.Commands.Extensions;
 using Remora.Discord.Commands.Services;
 using Remora.Discord.Extensions.Extensions;
+using Remora.Discord.Gateway;
 using Remora.Discord.Hosting.Extensions;
 using Remora.Discord.Interactivity.Extensions;
 using Remora.Rest.Core;
@@ -17,11 +19,14 @@ var goudaConfig = builder.Configuration.GetSection("Gouda").Get<GoudaConfigurati
 
 builder.Services
     .AddDiscordService(_ => goudaConfig.DiscordToken)
+    .Configure<DiscordGatewayClientOptions>(g => g.Intents |= GatewayIntents.MessageContents | GatewayIntents.GuildMembers | GatewayIntents.Guilds | GatewayIntents.DirectMessages | GatewayIntents.GuildBans)
     .AddDiscordCaching()
     .AddDiscordCommands(enableSlash: true)
     .AddInteractivity()
     .AddCommandGroupsFromAssembly(typeof(Program).Assembly)
+    .AddRespondersFromAssembly(typeof(Program).Assembly)
     .AddScoped<TranslationService>()
+    .AddScoped<ThreadPresenceService>()
     .AddGeocoding();
 
 builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda");
