@@ -27,6 +27,7 @@ builder.Services
     .AddRespondersFromAssembly(typeof(Program).Assembly)
     .AddScoped<TranslationService>()
     .AddScoped<ThreadPresenceService>()
+    .AddScoped<GuildAlertService>()
     .AddGeocoding();
 
 builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda");
