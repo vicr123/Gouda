@@ -41,7 +41,11 @@ jobs:
           dotnet-version: '9.x.x'
           cache: true
           cache-dependency-path: "*/packages.lock.json"
-      
+          
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: 'Gouda.Web/package.json'
+
       - name: Restore .NET
         run: |
           dotnet restore --locked-mode
