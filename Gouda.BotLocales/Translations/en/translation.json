@@ -9,5 +9,12 @@
   "ABOUT_FILE_BUG_DESCRIPTION": "File a bug at the [GitHub repository]({{repositoryLink}}) for Gouda.",
   "ABOUT_CONFIG_BUTTON": "Configure Gouda",
   "ABOUT_FILE_BUG_BUTTON": "File Bug",
-  "ABOUT_VIEW_SOURCE_BUTTON": "View Source"
+  "ABOUT_VIEW_SOURCE_BUTTON": "View Source",
+  "TIME_ERROR": "Unable to retrieve the requested time",
+  "WEATHER": "Weather",
+  "WEATHER_USER": "Weather for {{user}}",
+  "WEATHER_FEELS_LIKE": "Feels like {{temperature}}",
+  "WEATHER_CURRENT": "Current Weather",
+  "WEATHER_HOURLY": "Hourly Forecast",
+  "WEATHER_DAILY": "Daily Forecast"
 }

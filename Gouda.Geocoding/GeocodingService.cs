@@ -3,12 +3,59 @@ using System.Globalization;
 using Gouda.Database;
 using Microsoft.EntityFrameworkCore;
 using Remora.Discord.API.Abstractions.Objects;
+using Remora.Discord.API.Abstractions.Rest;
+using Remora.Discord.Commands.Contexts;
+using Remora.Discord.Commands.Extensions;
 
 namespace Gouda.Geocoding;
 
-public class GeocodingService(GoudaDbContext dbContext)
+public class GeocodingService(GoudaDbContext dbContext, IInteractionContext interactionContext, IDiscordRestUserAPI userApi)
 {
     private const double EarthRadiusKm = 6371;
+
+    /// <summary>
+    /// Finds a city based on Discord arguments.
+    /// </summary>
+    /// <param name="user">User from Discord arguments.</param>
+    /// <param name="city">City from Discord arguments.</param>
+    /// <returns>A resolved location, or null otherwise.</returns>
+    public async Task<LocationResult?> Locate(IUser? user, string? city)
+    {
+        ulong geonameId;
+        IUser? userObject = null;
+        Location? location = null;
+        if (city is not null)
+        {
+            geonameId = await SearchCity(city);
+        }
+        else if (user is not null)
+        {
+            location = await UserLocation(user);
+            geonameId = await ClosestCity(location);
+            userObject = user;
+        }
+        else
+        {
+            if (!interactionContext.TryGetUserID(out var interactionUserId))
+            {
+                return null;
+            }
+
+            location = await UserLocation(interactionUserId.Value);
+            var closestCityTask = ClosestCity(location);
+            var userObjectTask = userApi.GetUserAsync(interactionUserId);
+
+            geonameId = await closestCityTask;
+            userObject = (await userObjectTask).Entity;
+        }
+
+        var cityInformation = await CityInformation(geonameId);
+        return new(cityInformation, userObject, location ?? new()
+        {
+            Latitude = cityInformation.Latitude,
+            Longitude = cityInformation.Longitude,
+        });
+    }
 
     public async Task<ulong> ClosestCity(double lat, double lon)
     {
@@ -29,12 +76,12 @@ public class GeocodingService(GoudaDbContext dbContext)
         return geonames.MinBy(x => x.Distance)!.Id;
     }
 
-    public async Task<ulong> ClosestCity(IUser user)
+    public async Task<Location> UserLocation(IUser user)
     {
-        return await ClosestCity(user.ID.Value);
+        return await UserLocation(user.ID.Value);
     }
 
-    public async Task<ulong> ClosestCity(ulong user)
+    public async Task<Location> UserLocation(ulong user)
     {
         var location = await dbContext.Locations.FirstOrDefaultAsync(x => x.UserId == user);
         if (location is null)
@@ -42,6 +89,21 @@ public class GeocodingService(GoudaDbContext dbContext)
             throw new InvalidLocationException();
         }
 
+        return location;
+    }
+
+    public async Task<ulong> ClosestCity(IUser user)
+    {
+        return await ClosestCity(user.ID.Value);
+    }
+
+    public async Task<ulong> ClosestCity(ulong user)
+    {
+        return await ClosestCity(await UserLocation(user));
+    }
+
+    public async Task<ulong> ClosestCity(Location location)
+    {
         return await ClosestCity(location.Latitude, location.Longitude);
     }
 
@@ -108,7 +170,7 @@ public class GeocodingService(GoudaDbContext dbContext)
                 x.GeonameId == admin1.GeonameId && x.Language == "abbr");
         var admin1AlternateName = admin1 is null ? null : await BestAlternateName(admin1.GeonameId);
 
-        return new(alternateName ?? geoname.Name, admin1AlternateName ?? admin1?.Name, admin1Short?.AlternateName, geoname.Timezone, geoname.CountryCode);
+        return new(alternateName ?? geoname.Name, admin1AlternateName ?? admin1?.Name, admin1Short?.AlternateName, geoname.Timezone, geoname.CountryCode, geoname.Latitude, geoname.Longitude);
     }
 
     private async Task<string?> BestAlternateName(ulong id)
@@ -129,5 +191,7 @@ public class GeocodingService(GoudaDbContext dbContext)
         return alternateName?.AlternateName;
     }
 
-    public record LocalisedGeoname(string Name, string? Admin1, string? Admin1ShortName, string Timezone, string Country);
+    public record LocalisedGeoname(string Name, string? Admin1, string? Admin1ShortName, string Timezone, string Country, double Latitude, double Longitude);
+
+    public record LocationResult(LocalisedGeoname Geoname, IUser? User, Location location);
 }

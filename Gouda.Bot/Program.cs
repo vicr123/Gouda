@@ -28,6 +28,7 @@ builder.Services
     .AddScoped<TranslationService>()
     .AddScoped<ThreadPresenceService>()
     .AddScoped<GuildAlertService>()
+    .AddScoped<WeatherService>()
     .AddGeocoding();
 
 builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda");

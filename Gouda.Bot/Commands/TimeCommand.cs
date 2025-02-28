@@ -13,7 +13,7 @@ using Remora.Results;
 
 namespace Gouda.Bot.Commands;
 
-public class TimeCommand(GoudaDbContext dbContext, GeocodingService geocodingService, IFeedbackService feedbackService, IInteractionContext interactionContext, TranslationService translationService) : CommandGroup
+public class TimeCommand(GeocodingService geocodingService, IFeedbackService feedbackService, TranslationService translationService) : CommandGroup
 {
     [Command("time")]
     [Description("Get the time for a user")]
@@ -21,36 +21,23 @@ public class TimeCommand(GoudaDbContext dbContext, GeocodingService geocodingSer
     {
         try
         {
-            ulong geonameId;
-            if (city is not null)
+            var response = await geocodingService.Locate(user, city);
+            if (response is null)
             {
-                geonameId = await geocodingService.SearchCity(city);
-            }
-            else if (user is not null)
-            {
-                geonameId = await geocodingService.ClosestCity(user);
-            }
-            else
-            {
-                if (!interactionContext.TryGetUserID(out var interactionUserId))
-                {
-                    await feedbackService.SendContextualAsync("There was a problem");
-                    return Result.Success;
-                }
-
-                geonameId = await geocodingService.ClosestCity(interactionUserId.Value);
+                await feedbackService.SendContextualAsync(translationService["TIME_ERROR"]);
+                return Result.Success;
             }
 
-            var geoname = await geocodingService.CityInformation(geonameId);
+            var (geoname, userObject, _) = response;
 
             var localTime = TimeZoneInfo.ConvertTime(DateTimeOffset.Now, TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone));
 
             string?[] parts = [geoname.Name, geoname.Admin1ShortName ?? geoname.Admin1, geoname.Country];
-            await feedbackService.SendContextualAsync($":clock10: **{string.Join(", ", parts.Where(x => x is not null))}** {localTime:dddd, dd MMMM yyyy HH:mm}");
+            await feedbackService.SendContextualAsync($":clock10: **{userObject?.Username ?? string.Join(", ", parts.Where(x => x is not null))}** {localTime:dddd, dd MMMM yyyy HH:mm}");
         }
         catch (InvalidLocationException)
         {
-            await feedbackService.SendContextualAsync($"User has not set a location");
+            await feedbackService.SendContextualAsync(translationService["TIME_ERROR"]);
         }
 
         return Result.Success;

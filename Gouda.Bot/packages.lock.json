@@ -45,6 +45,15 @@
           "Microsoft.Extensions.Options": "9.0.2"
         }
       },
+      "OpenMeteoApi": {
+        "type": "Direct",
+        "requested": "[1.3.0, )",
+        "resolved": "1.3.0",
+        "contentHash": "cKy2tOnVWNWuVwDx8csMRGpiN3Z2u027RDNZxDOoITAfF3gvfZrO8RgEMagewWyh/zB7a2T8RDtCuVitsZlbmg==",
+        "dependencies": {
+          "System.Text.Json": "8.0.4"
+        }
+      },
       "Remora.Discord": {
         "type": "Direct",
         "requested": "[2025.1.0, )",
@@ -57,6 +66,24 @@
           "Remora.Discord.Hosting": "7.0.0",
           "Remora.Discord.Interactivity": "6.0.0",
           "Remora.Discord.Pagination": "5.0.0"
+        }
+      },
+      "SkiaSharp.NativeAssets.Linux.NoDependencies": {
+        "type": "Direct",
+        "requested": "[2.88.9, )",
+        "resolved": "2.88.9",
+        "contentHash": "ZA9syMvIuoqxPhyFTgde/bNV6VMdeYT9gRdNQT5O+ZjPK+a/nVkKRrqBbn7EVA7XQiW+xIycyT4gW/sea9eh+w==",
+        "dependencies": {
+          "SkiaSharp": "2.88.9"
+        }
+      },
+      "SkiaSharp.Svg": {
+        "type": "Direct",
+        "requested": "[1.60.0, )",
+        "resolved": "1.60.0",
+        "contentHash": "rTneyM6mt0w2xCCampFlkO3mGFIwGEJo7L2X3JOdyeMCZDQkyqv7m9kZfA89kLSErXErFnY72TZsryzqTIiT7g==",
+        "dependencies": {
+          "SkiaSharp": "1.60.0"
         }
       },
       "StyleCop.Analyzers": {
@@ -701,6 +728,25 @@
         "type": "Transitive",
         "resolved": "8.0.0",
         "contentHash": "H98ghQQpxJ+uUe4T9k2xRDRgRtqzG/UWkCMj+QbBi7GZ++GREB1vKB16La2VdYsCLcW5/mfxK2u6DYRuf+Bf7Q=="
+      },
+      "SkiaSharp": {
+        "type": "Transitive",
+        "resolved": "2.88.9",
+        "contentHash": "3MD5VHjXXieSHCleRLuaTXmL2pD0mB7CcOB1x2kA1I4bhptf4e3R27iM93264ZYuAq6mkUyX5XbcxnZvMJYc1Q==",
+        "dependencies": {
+          "SkiaSharp.NativeAssets.Win32": "2.88.9",
+          "SkiaSharp.NativeAssets.macOS": "2.88.9"
+        }
+      },
+      "SkiaSharp.NativeAssets.macOS": {
+        "type": "Transitive",
+        "resolved": "2.88.9",
+        "contentHash": "Nv5spmKc4505Ep7oUoJ5vp3KweFpeNqxpyGDWyeEPTX2uR6S6syXIm3gj75dM0YJz7NPvcix48mR5laqs8dPuA=="
+      },
+      "SkiaSharp.NativeAssets.Win32": {
+        "type": "Transitive",
+        "resolved": "2.88.9",
+        "contentHash": "wb2kYgU7iy84nQLYZwMeJXixvK++GoIuECjU4ECaUKNuflyRlJKyiRhN1MAHswvlvzuvkrjRWlK0Za6+kYQK7w=="
       },
       "StyleCop.Analyzers.Unstable": {
         "type": "Transitive",

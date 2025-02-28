@@ -12,7 +12,10 @@
     <ItemGroup>
         <PackageReference Include="I18Next.Net.Extensions" />
         <PackageReference Include="Microsoft.Extensions.Hosting" />
+        <PackageReference Include="OpenMeteoApi" />
         <PackageReference Include="Remora.Discord" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" />
+        <PackageReference Include="SkiaSharp.Svg" />
     </ItemGroup>
 
     <ItemGroup>
