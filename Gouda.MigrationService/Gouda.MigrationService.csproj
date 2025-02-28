@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-Gouda.MigrationService-57db16fc-4512-4a9e-8297-d1e943afe33d</UserSecretsId>
+        <ContainerRepository>vicr123/Gouda/migrationservice</ContainerRepository>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,7 +14,7 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting" />
         <PackageReference Include="System.Linq.Async" />
         <PackageReference Include="System.Reactive.Linq" />
     </ItemGroup>

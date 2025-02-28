@@ -7,8 +7,7 @@ import "./index.css";
 import { initReactI18next } from "react-i18next";
 import { router } from "./router.ts";
 
-await i18n
-    .use(initReactI18next)
+i18n.use(initReactI18next)
     .use(HttpApi)
     .init<HttpBackendOptions>({
         lng: "en",

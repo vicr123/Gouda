@@ -8,6 +8,7 @@
         <SpaProxyLaunchCommand>pnpm run dev</SpaProxyLaunchCommand>
         <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
         <UserSecretsId>247b0816-fa56-4540-8ca0-415e5f7c8ac8</UserSecretsId>
+        <ContainerRepository>vicr123/Gouda/apiservice</ContainerRepository>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,10 +19,8 @@
     
     <ItemGroup>
         <PackageReference Include="AspNet.Security.OAuth.Discord" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
-            <Version>9.*-*</Version>
-        </PackageReference>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+        <PackageReference Include="Microsoft.AspNetCore.SpaProxy" />
         <PackageReference Include="Remora.Discord" />
     </ItemGroup>
 
