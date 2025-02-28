@@ -1,0 +1,47 @@
+name: Publish to GitHub Container Registry
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: haya14busa/action-cond@v1
+        id: checkpr
+        with:
+          cond: ${{ github.event_name == 'pull_request' }}
+          if_true: false
+          if_false: true
+      - name: Checkout repository
+        uses: actions/checkout@v3.2.0
+        with:
+          submodules: 'recursive'
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@master
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Aspirate
+        run: |
+          dotnet tool install -g aspirate
+
+      - name: Deploy Aspirate
+        working-directory: Gouda.AppHost
+        run: |
+          aspirate generate --output-format compose --include-dashboard --container-registry ghcr.io --container-image-tag "${GITHUB_REF##*/}" --non-interactive
+
