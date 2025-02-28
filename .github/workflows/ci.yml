@@ -45,6 +45,10 @@ jobs:
       - name: Restore .NET
         run: |
           dotnet restore --locked-mode
+          
+      - name: Build .NET
+        run: |
+          dotnet build --no-restore
 
       - name: Install Aspirate
         run: |
