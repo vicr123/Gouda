@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-Gouda.Bot-ab20098c-c9bf-4ec9-b198-d6d5cdbe9c82</UserSecretsId>
         <ContainerRepository>vicr123/Gouda/bot</ContainerRepository>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
 
     <ItemGroup>

@@ -39,6 +39,11 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.x.x'
+          cache: true
+      
+      - name: Restore .NET
+        run: |
+          dotnet restore --locked-mode
 
       - name: Install Aspirate
         run: |
@@ -47,5 +52,5 @@ jobs:
       - name: Deploy Aspirate
         working-directory: Gouda.AppHost
         run: |
-          aspirate generate --output-format compose --include-dashboard --container-registry ghcr.io --container-image-tag "${GITHUB_REF##*/}" --non-interactive
+          aspirate generate --output-format compose --include-dashboard --container-registry ghcr.io --container-image-tag "${GITHUB_REF##*/}" --non-interactive --secret-password secret
 

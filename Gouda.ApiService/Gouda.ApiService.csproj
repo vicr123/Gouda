@@ -9,6 +9,7 @@
         <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
         <UserSecretsId>247b0816-fa56-4540-8ca0-415e5f7c8ac8</UserSecretsId>
         <ContainerRepository>vicr123/Gouda/apiservice</ContainerRepository>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
 
     <ItemGroup>

@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-Gouda.MigrationService-57db16fc-4512-4a9e-8297-d1e943afe33d</UserSecretsId>
         <ContainerRepository>vicr123/Gouda/migrationservice</ContainerRepository>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
 
     <ItemGroup>
