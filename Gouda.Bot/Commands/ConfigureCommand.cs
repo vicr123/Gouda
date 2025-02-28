@@ -2,6 +2,8 @@ using System.ComponentModel;
 using Gouda.Bot.Services;
 using Remora.Commands.Attributes;
 using Remora.Commands.Groups;
+using Remora.Discord.API.Abstractions.Objects;
+using Remora.Discord.API.Objects;
 using Remora.Discord.Commands.Feedback.Services;
 using Remora.Discord.Extensions.Embeds;
 using Remora.Results;
@@ -23,7 +25,17 @@ public class ConfigureCommand(IFeedbackService feedbackService, TranslationServi
                     botName = "Gouda",
                     configurationLink = "https://localhost:1234",
                 }])
-                .Build().Entity);
+                .Build().Entity,
+            new()
+            {
+                MessageComponents = new(
+                [
+                    new ActionRowComponent(
+                    [
+                        new ButtonComponent(ButtonComponentStyle.Link, translationService["ABOUT_CONFIG_BUTTON"], URL: "https://example.com"),
+                    ]),
+                ]),
+            });
 #pragma warning restore SA1500
         return Result.Success;
     }

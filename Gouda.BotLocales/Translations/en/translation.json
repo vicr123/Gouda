@@ -1,5 +1,13 @@
 {
   "PING_RESPONSE": "Pong!",
   "CONFIGURE_TITLE": "Configuration",
-  "CONFIG_RESPONSE": "To configure {{botName}}, visit {{configurationLink}}."
+  "CONFIG_RESPONSE": "To configure {{botName}}, visit {{configurationLink}}.",
+  "ABOUT_DESCRIPTION": "Discord Bot",
+  "ABOUT_CONFIG_TITLE": "Configure Gouda",
+  "ABOUT_CONFIG_DESCRIPTION": "Change Gouda settings at the [website]({{configurationLink}})",
+  "ABOUT_FILE_BUG_TITLE": "File Bug",
+  "ABOUT_FILE_BUG_DESCRIPTION": "File a bug at the [GitHub repository]({{repositoryLink}}) for Gouda.",
+  "ABOUT_CONFIG_BUTTON": "Configure Gouda",
+  "ABOUT_FILE_BUG_BUTTON": "File Bug",
+  "ABOUT_VIEW_SOURCE_BUTTON": "View Source"
 }
