@@ -63,3 +63,9 @@ jobs:
         run: |
           aspirate generate --output-format compose --include-dashboard --container-registry ghcr.io --container-image-tag "${GITHUB_REF##*/}" --non-interactive --secret-password secret
 
+      - name: Generate Job Summary
+        run: |
+          echo "## Docker Compose File" >> $GITHUB_STEP_SUMMARY
+          echo "```" >> $GITHUB_STEP_SUMMARY
+          cat Gouda.AppHost/aspirate-output/docker-compose.yaml >> $GITHUB_STEP_SUMMARY
+          echo "```" >> $GITHUB_STEP_SUMMARY
