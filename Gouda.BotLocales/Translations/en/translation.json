@@ -43,5 +43,7 @@
   "WEATHER_CONDITION_THUNDERSTORM": "Thunderstorm",
   "WEATHER_CONDITION_HAIL_LIGHT": "Light Hail",
   "WEATHER_CONDITION_HAIL_HEAVY": "Heavy Hail",
-  "WEATHER_CONDITION_UNKNOWN": "Unknown"
+  "WEATHER_CONDITION_UNKNOWN": "Unknown",
+  "WEATHER_ERROR": "Unable to retrieve the requested weather",
+  "TODAY": "Today"
 }

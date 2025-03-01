@@ -24,6 +24,9 @@ public class WeatherIconService
         using var compassStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.compass.svg");
         using var humidityStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.humidity.svg");
         using var precipitationStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.precipitation.svg");
+        using var lowTempStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.low-temp.svg");
+        using var highTempStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.high-temp.svg");
+        using var unavailStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.unavail.svg");
 
         Barry = SKBitmap.Decode(barryStream);
         Sunny.Load(sunnyStream);
@@ -40,6 +43,9 @@ public class WeatherIconService
         Compass.Load(compassStream);
         Humidity.Load(humidityStream);
         Precipitation.Load(precipitationStream);
+        LowTemp.Load(lowTempStream);
+        HighTemp.Load(highTempStream);
+        Unavailable.Load(unavailStream);
     }
 
     public SKBitmap Barry { get; }
@@ -73,6 +79,12 @@ public class WeatherIconService
     public SKSvg Compass { get; } = new();
 
     public SKSvg Precipitation { get; } = new();
+    
+    public SKSvg LowTemp { get; } = new();
+
+    public SKSvg HighTemp { get; } = new();
+
+    public SKSvg Unavailable { get; } = new();
 
     public SKSvg WeatherIcon(int weatherCode, bool isDay)
     {

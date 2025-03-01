@@ -1,4 +1,5 @@
 using Gouda.Bot;
+using Gouda.Bot.Interactions;
 using Gouda.Bot.Services;
 using Gouda.Database;
 using Gouda.Geocoding;
@@ -27,6 +28,7 @@ builder.Services
     .AddInteractivity()
     .AddCommandGroupsFromAssembly(typeof(Program).Assembly)
     .AddRespondersFromAssembly(typeof(Program).Assembly)
+    .AddInteractionGroup<WeatherInteractions>()
     .AddScoped<TranslationService>()
     .AddScoped<ThreadPresenceService>()
     .AddScoped<GuildAlertService>()

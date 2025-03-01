@@ -170,7 +170,7 @@ public class GeocodingService(GoudaDbContext dbContext, IInteractionContext inte
                 x.GeonameId == admin1.GeonameId && x.Language == "abbr");
         var admin1AlternateName = admin1 is null ? null : await BestAlternateName(admin1.GeonameId);
 
-        return new(alternateName ?? geoname.Name, admin1AlternateName ?? admin1?.Name, admin1Short?.AlternateName, geoname.Timezone, geoname.CountryCode, geoname.Latitude, geoname.Longitude);
+        return new(id, alternateName ?? geoname.Name, admin1AlternateName ?? admin1?.Name, admin1Short?.AlternateName, geoname.Timezone, geoname.CountryCode, geoname.Latitude, geoname.Longitude);
     }
 
     private async Task<string?> BestAlternateName(ulong id)
@@ -191,7 +191,7 @@ public class GeocodingService(GoudaDbContext dbContext, IInteractionContext inte
         return alternateName?.AlternateName;
     }
 
-    public record LocalisedGeoname(string Name, string? Admin1, string? Admin1ShortName, string Timezone, string Country, double Latitude, double Longitude);
+    public record LocalisedGeoname(ulong Id, string Name, string? Admin1, string? Admin1ShortName, string Timezone, string Country, double Latitude, double Longitude);
 
     public record LocationResult(LocalisedGeoname Geoname, IUser? User, Location location);
 }
