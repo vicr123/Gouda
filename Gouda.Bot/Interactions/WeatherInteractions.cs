@@ -1,3 +1,4 @@
+using System.Globalization;
 using Gouda.Bot.Enum;
 using Gouda.Bot.Services;
 using Gouda.Geocoding;
@@ -33,10 +34,10 @@ public class WeatherInteractions(IInteractionCommandContext interactionCommandCo
 
         var parts = values[0].Split('_');
         var weatherType = parts[0];
-        var geonameId = ulong.Parse(parts[1]);
-        var latitude = double.Parse(parts[2]);
-        var longitude = double.Parse(parts[3]);
-        var caller = ulong.Parse(parts[4]);
+        var geonameId = ulong.Parse(parts[1], CultureInfo.InvariantCulture);
+        var latitude = double.Parse(parts[2], CultureInfo.InvariantCulture);
+        var longitude = double.Parse(parts[3], CultureInfo.InvariantCulture);
+        var caller = ulong.Parse(parts[4], CultureInfo.InvariantCulture);
         var units = parts[5];
         var userString = parts[6];
         if (caller != userId.Value)
