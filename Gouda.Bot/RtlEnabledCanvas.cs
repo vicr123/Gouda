@@ -14,20 +14,6 @@ public class RtlEnabledCanvas(SKBitmap bitmap) : SKCanvas(bitmap)
 
     public new void DrawRect(float x, float y, float width, float height, SKPaint paint) => base.DrawRect(x, y, width, height, paint);
 
-    public new void DrawText(string text, float x, float y, SKPaint paint)
-    {
-        using SKShaper s = new(paint.Typeface);
-        var rs = new RichString().FontFamily("Asap Condensed").FontSize(paint.TextSize).Add(text);
-
-        if (IsRtl)
-        {
-            x = bitmap.Width - x - rs.MeasuredWidth;
-        }
-
-        rs.Paint(this, new SKPoint(x, y));
-        // this.DrawShapedText(s, text, x, y, paint);
-    }
-
     public void DrawRichString(RichString richString, float x, float y)
     {
         if (IsRtl)
@@ -38,16 +24,20 @@ public class RtlEnabledCanvas(SKBitmap bitmap) : SKCanvas(bitmap)
         richString.Paint(this, new SKPoint(x, y));
     }
 
-    public void DrawSvg(SKSvg svg, float x, float y, float width, float height, SKPaint? paint = null)
+    public void DrawSvg(SKSvg svg, float x, float y, float width, float height, bool flipInRtl = false, SKPaint? paint = null)
     {
         if (IsRtl)
         {
             x = bitmap.Width - x - width;
+            if (flipInRtl)
+            {
+                x += width;
+            }
         }
 
         Save();
         Translate(x, y);
-        Scale(width / svg.CanvasSize.Width, height / svg.CanvasSize.Height);
+        Scale(width / svg.CanvasSize.Width * (flipInRtl && IsRtl ? -1 : 1), height / svg.CanvasSize.Height);
         DrawPicture(svg.Picture, 0, 0, paint);
         Restore();
     }

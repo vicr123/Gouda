@@ -28,4 +28,16 @@ public class WeatherService
         };
         return await client.GetCurrentWeather(latitude, longitude);
     }
+
+    public async Task<List<DailyForecastItem>> DailyForecast(double latitude, double longitude, string timezone)
+    {
+        var client = new OpenMeteoClient
+        {
+            ForecastParameters = new()
+            {
+                { "timezone", timezone },
+            },
+        };
+        return await client.GetDailyForecasts(latitude, longitude);
+    }
 }

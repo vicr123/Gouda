@@ -17,6 +17,13 @@ public class WeatherIconService
         using var snowyRainyStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.rainsnow.svg");
         using var snowyStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.snow.svg");
         using var thunderStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.thunder.svg");
+        using var windStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.wind.svg");
+        using var pressureStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.pressure.svg");
+        using var sunriseStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.sunrise.svg");
+        using var sunsetStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.sunset.svg");
+        using var compassStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.compass.svg");
+        using var humidityStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.humidity.svg");
+        using var precipitationStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.precipitation.svg");
 
         Barry = SKBitmap.Decode(barryStream);
         Sunny.Load(sunnyStream);
@@ -26,6 +33,13 @@ public class WeatherIconService
         Rainy.Load(snowyRainyStream);
         Snowy.Load(snowyStream);
         Thunder.Load(thunderStream);
+        Wind.Load(windStream);
+        Pressure.Load(pressureStream);
+        Sunrise.Load(sunriseStream);
+        Sunset.Load(sunsetStream);
+        Compass.Load(compassStream);
+        Humidity.Load(humidityStream);
+        Precipitation.Load(precipitationStream);
     }
 
     public SKBitmap Barry { get; }
@@ -45,6 +59,20 @@ public class WeatherIconService
     public SKSvg Snowy { get; } = new();
 
     public SKSvg Thunder { get; } = new();
+
+    public SKSvg Wind { get; } = new();
+
+    public SKSvg Pressure { get; } = new();
+
+    public SKSvg Sunrise { get; } = new();
+
+    public SKSvg Sunset { get; } = new();
+
+    public SKSvg Humidity { get; } = new();
+
+    public SKSvg Compass { get; } = new();
+
+    public SKSvg Precipitation { get; } = new();
 
     public SKSvg WeatherIcon(int weatherCode, bool isDay)
     {
