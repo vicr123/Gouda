@@ -1,12 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-Gouda.MigrationService-57db16fc-4512-4a9e-8297-d1e943afe33d</UserSecretsId>
         <ContainerRepository>vicr123/Gouda/migrationservice</ContainerRepository>
-        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,4 +20,5 @@
       <ProjectReference Include="..\Gouda.Database\Gouda.Database.csproj" />
       <ProjectReference Include="..\Gouda.ServiceDefaults\Gouda.ServiceDefaults.csproj" />
     </ItemGroup>
+
 </Project>

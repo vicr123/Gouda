@@ -66,7 +66,7 @@ builder.Services
     .Decorate<IDiscordRestVoiceAPI, CachingDiscordRestVoiceAPI>()
     .Decorate<IDiscordRestWebhookAPI, CachingDiscordRestWebhookAPI>();
 
-builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda");
+builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda-db");
 
 var app = builder.Build();
 

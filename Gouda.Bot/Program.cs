@@ -13,7 +13,6 @@ using Remora.Discord.Gateway;
 using Remora.Discord.Hosting.Extensions;
 using Remora.Discord.Interactivity.Extensions;
 using Remora.Rest.Core;
-using SkiaSharp;
 using Topten.RichTextKit;
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -38,7 +37,7 @@ builder.Services
     .AddSingleton<WeatherIconService>()
     .AddGeocoding();
 
-builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda");
+builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda-db");
 
 var host = builder.Build();
 

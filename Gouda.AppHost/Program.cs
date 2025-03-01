@@ -1,24 +1,20 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var apiService = builder.AddProject<Projects.Gouda_ApiService>("apiservice");
-var botService = builder.AddProject<Projects.Gouda_Bot>("botservice");
-var pg = builder.AddPostgres("postgres").WithDataVolume(isReadOnly: false);
-var pgDb = pg.AddDatabase("gouda");
-var migration = builder.AddProject<Projects.Gouda_MigrationService>("migrationservice");
+var pg = builder.AddPostgres("postgres")
+    .WithDataVolume(isReadOnly: false);
 
-migration
-     .WithReference(pgDb)
-     .WaitFor(pgDb);
+var goudaDb = pg.AddDatabase("gouda-db");
 
-apiService
-    // .WaitForCompletion(migration)
+var migration = builder.AddProject<Projects.Gouda_MigrationService>("migration-service")
+    .WithReference(goudaDb).WaitFor(goudaDb);
+
+var apiService = builder.AddProject<Projects.Gouda_ApiService>("api-service")
     .WithExternalHttpEndpoints()
-    .WithReference(pgDb)
-    .WithReference(botService)
-    .WaitFor(botService);
+    .WithReference(goudaDb).WaitFor(goudaDb)
+    .WaitForCompletion(migration);
 
-botService
-    // .WaitForCompletion(migration)
-    .WithReference(pgDb);
+var botService = builder.AddProject<Projects.Gouda_Bot>("bot-service")
+    .WithReference(goudaDb).WaitFor(goudaDb)
+    .WaitForCompletion(migration);
 
 builder.Build().Run();

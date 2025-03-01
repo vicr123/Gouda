@@ -218,7 +218,7 @@ public class GuildController(GoudaDbContext dbContext, DiscordUserService discor
 
         public required string? Parent { get; set; }
     }
-    
+
     private class CategoryInfo
     {
         public required string Id { get; set; }

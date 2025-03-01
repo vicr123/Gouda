@@ -1,18 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-    </PropertyGroup>
-
     <ItemGroup>
       <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
       <PackageReference Include="FlexLabs.EntityFrameworkCore.Upsert" />
       <PackageReference Include="JetBrains.Annotations" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EditorConfigFiles Remove="D:\source\Gouda\Gouda.Database\Migrations\.editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="D:\source\Gouda\Gouda.Database\Migrations\.editorconfig" />
     </ItemGroup>
 
 </Project>

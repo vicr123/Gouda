@@ -1,12 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-Gouda.Bot-ab20098c-c9bf-4ec9-b198-d6d5cdbe9c82</UserSecretsId>
         <ContainerRepository>vicr123/Gouda/bot</ContainerRepository>
-        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -30,7 +26,7 @@
     <ItemGroup>
         <EmbeddedResource Include="Weather\Images\*.png" />
         <EmbeddedResource Include="Weather\Images\*.svg" />
-        <None Remove="Weather\AsapCondensed-Regular.ttf" />
         <EmbeddedResource Include="Weather\AsapCondensed-Regular.ttf" />
     </ItemGroup>
+
 </Project>

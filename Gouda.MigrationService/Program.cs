@@ -9,7 +9,7 @@ builder.Services.AddHostedService<Worker>();
 
 builder.AddServiceDefaults();
 
-builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda");
+builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda-db");
 
 var host = builder.Build();
 host.Run();

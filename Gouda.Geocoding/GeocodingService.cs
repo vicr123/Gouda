@@ -193,5 +193,5 @@ public class GeocodingService(GoudaDbContext dbContext, IInteractionContext inte
 
     public record LocalisedGeoname(ulong Id, string Name, string? Admin1, string? Admin1ShortName, string Timezone, string Country, double Latitude, double Longitude);
 
-    public record LocationResult(LocalisedGeoname Geoname, IUser? User, Location location);
+    public record LocationResult(LocalisedGeoname Geoname, IUser? User, Location Location);
 }

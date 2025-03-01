@@ -79,7 +79,7 @@ public class WeatherIconService
     public SKSvg Compass { get; } = new();
 
     public SKSvg Precipitation { get; } = new();
-    
+
     public SKSvg LowTemp { get; } = new();
 
     public SKSvg HighTemp { get; } = new();

@@ -1,15 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
         <SpaRoot>..\Gouda.Web</SpaRoot>
         <SpaProxyLaunchCommand>pnpm run dev</SpaProxyLaunchCommand>
         <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
         <UserSecretsId>247b0816-fa56-4540-8ca0-415e5f7c8ac8</UserSecretsId>
         <ContainerRepository>vicr123/Gouda/apiservice</ContainerRepository>
-        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -26,9 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Gouda.Web\Gouda.Web.esproj">
-            <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-        </ProjectReference>
+        <ProjectReference Include="..\Gouda.Web\Gouda.Web.esproj" ReferenceOutputAssembly="false" />
     </ItemGroup>
     
 </Project>

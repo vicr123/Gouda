@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.2468794">
+﻿<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.2518757">
     <PropertyGroup>
         <StartupCommand>pnpm run dev</StartupCommand>
         <!-- Allows the build (or compile) script located on package.json to run on Build -->

@@ -1,21 +1,10 @@
 root = true
 
-[*]
-insert_final_newline = true
-
 [*.cs]
-indentationSize = 4
-tabSize = 4
-useTabs = false
-csharp_using_directive_placement = outsideNamespace
-stylecop.layout.newlineAtEndOfFile = require
-stylecop.documentation.documentInterfaces = false
-stylecop.documentation.documentExposedElements = false
-stylecop.documentation.documentInternalElements = false
-stylecop.documentation.documentPrivateElements = false
-stylecop.documentation.documentPrivateFields = false
-
 dotnet_diagnostic.SA1200.severity = None
+dotnet_diagnostic.SA1600.Severity = None
+dotnet_diagnostic.SA1601.Severity = None
+dotnet_diagnostic.SA1602.Severity = None
 dotnet_diagnostic.SA1633.severity = None
 dotnet_diagnostic.SA1101.severity = None
 dotnet_diagnostic.SA1127.severity = None
@@ -28,3 +17,5 @@ dotnet_diagnostic.SA1407.severity = None
 dotnet_diagnostic.SA1118.severity = None
 dotnet_diagnostic.SA1111.severity = None
 dotnet_diagnostic.SA1117.severity = None
+
+dotnet_diagnostic.CS1591.severity = None

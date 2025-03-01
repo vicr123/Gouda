@@ -6,7 +6,9 @@ using SKSvg = SkiaSharp.Extended.Svg.SKSvg;
 
 namespace Gouda.Bot;
 
+#pragma warning disable CS9107 // Parameter is captured into the state of the enclosing type and its value is also passed to the base constructor. The value might be captured by the base class as well.
 public class RtlEnabledCanvas(SKBitmap bitmap) : SKCanvas(bitmap)
+#pragma warning restore CS9107
 {
     public bool IsRtl { get; set; } = CultureInfo.CurrentCulture.TextInfo.IsRightToLeft;
 
