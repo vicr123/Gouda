@@ -29,10 +29,12 @@ builder.Services
     .AddCommandGroupsFromAssembly(typeof(Program).Assembly)
     .AddRespondersFromAssembly(typeof(Program).Assembly)
     .AddInteractionGroup<WeatherInteractions>()
+    .AddInteractionGroup<PicInteractions>()
     .AddScoped<TranslationService>()
     .AddScoped<ThreadPresenceService>()
     .AddScoped<GuildAlertService>()
     .AddScoped<WeatherService>()
+    .AddScoped<PicService>()
     .AddSingleton<WeatherIconService>()
     .AddGeocoding();
 

@@ -45,5 +45,7 @@
   "WEATHER_CONDITION_HAIL_HEAVY": "Heavy Hail",
   "WEATHER_CONDITION_UNKNOWN": "Unknown",
   "WEATHER_ERROR": "Unable to retrieve the requested weather",
-  "TODAY": "Today"
+  "TODAY": "Today",
+  "PROFILE_PICTURE": "Profile Picture",
+  "PROFILE_PICTURE_SERVER": "Server Profile Picture"
 }
