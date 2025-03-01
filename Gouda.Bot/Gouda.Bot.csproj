@@ -10,17 +10,27 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="HarfBuzzSharp.NativeAssets.Linux" />
         <PackageReference Include="I18Next.Net.Extensions" />
         <PackageReference Include="Microsoft.Extensions.Hosting" />
         <PackageReference Include="OpenMeteoApi" />
         <PackageReference Include="Remora.Discord" />
+        <PackageReference Include="SkiaSharp.HarfBuzz" />
         <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" />
         <PackageReference Include="SkiaSharp.Svg" />
+        <PackageReference Include="Topten.RichTextKit" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Gouda.BotLocales\Gouda.BotLocales.csproj" />
       <ProjectReference Include="..\Gouda.Database\Gouda.Database.csproj" />
       <ProjectReference Include="..\Gouda.Geocoding\Gouda.Geocoding.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <EmbeddedResource Include="Weather\Images\*.png" />
+        <EmbeddedResource Include="Weather\Images\*.svg" />
+        <None Remove="Weather\AsapCondensed-Regular.ttf" />
+        <EmbeddedResource Include="Weather\AsapCondensed-Regular.ttf" />
     </ItemGroup>
 </Project>

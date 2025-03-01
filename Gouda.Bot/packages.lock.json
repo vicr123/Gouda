@@ -2,6 +2,12 @@
   "version": 2,
   "dependencies": {
     "net9.0": {
+      "HarfBuzzSharp.NativeAssets.Linux": {
+        "type": "Direct",
+        "requested": "[8.3.0.1, )",
+        "resolved": "8.3.0.1",
+        "contentHash": "Qn8drjWx6xRm+KZ38pGK5Np44h58BI9rGAqQmJOmXNuAwsnfgrce8oWW8KI0O8CBSuu1R5Y2yhe8N+PayuAhNA=="
+      },
       "I18Next.Net.Extensions": {
         "type": "Direct",
         "requested": "[1.0.0, )",
@@ -68,6 +74,16 @@
           "Remora.Discord.Pagination": "5.0.0"
         }
       },
+      "SkiaSharp.HarfBuzz": {
+        "type": "Direct",
+        "requested": "[2.88.9, )",
+        "resolved": "2.88.9",
+        "contentHash": "5lyjX04CSWTKFYMSNN6SMupV2qzYDr8W/u8S3ZEkr+Sg3kOi0YE06EOqG0tzn/YPBID89xam4L3rz3hUUKOGEQ==",
+        "dependencies": {
+          "HarfBuzzSharp": "7.3.0.3",
+          "SkiaSharp": "2.88.9"
+        }
+      },
       "SkiaSharp.NativeAssets.Linux.NoDependencies": {
         "type": "Direct",
         "requested": "[2.88.9, )",
@@ -95,6 +111,19 @@
           "StyleCop.Analyzers.Unstable": "1.2.0.556"
         }
       },
+      "Topten.RichTextKit": {
+        "type": "Direct",
+        "requested": "[0.4.167, )",
+        "resolved": "0.4.167",
+        "contentHash": "fARM2vAZ4ZFAcNFqRLVrjQNjXzk/2yWWXTmTZ/aYUdXJE6ZT2616v3Ojux4cVcKPx2M930sY3plLKeWppGsJaA==",
+        "dependencies": {
+          "HarfBuzzSharp.NativeAssets.Linux": "2.8.2.3",
+          "SkiaSharp": "2.88.7",
+          "SkiaSharp.HarfBuzz": "2.88.7",
+          "SkiaSharp.NativeAssets.Linux": "2.88.7",
+          "System.ValueTuple": "4.5.0"
+        }
+      },
       "CommunityToolkit.HighPerformance": {
         "type": "Transitive",
         "resolved": "8.4.0",
@@ -104,6 +133,25 @@
         "type": "Transitive",
         "resolved": "2.0.2",
         "contentHash": "sBKqWxw3g//peYxDZ8JipRlyPbIyBtgzqBVA5GqwHVeqtIrw75maGXAllztf+1aJhchD+drcQIgf2mFho8ZV8A=="
+      },
+      "HarfBuzzSharp": {
+        "type": "Transitive",
+        "resolved": "7.3.0.3",
+        "contentHash": "Hq+5+gx10coOvuRgB13KBwiWxJq1QeYuhtVLbA01ZCWaugOnolUahF44KvrQTUUHDNk/C7HB6SMaebsZeOdhgg==",
+        "dependencies": {
+          "HarfBuzzSharp.NativeAssets.Win32": "7.3.0.3",
+          "HarfBuzzSharp.NativeAssets.macOS": "7.3.0.3"
+        }
+      },
+      "HarfBuzzSharp.NativeAssets.macOS": {
+        "type": "Transitive",
+        "resolved": "7.3.0.3",
+        "contentHash": "UAwIYnkbBTzBJv1Id8FijY/i8QiIepRemSXufU8fyzwWhYJdx4+ajG8yQUie5HW/uusbVLFSr26muSlJOFDgSw=="
+      },
+      "HarfBuzzSharp.NativeAssets.Win32": {
+        "type": "Transitive",
+        "resolved": "7.3.0.3",
+        "contentHash": "RPxRXD16KtSs8Yxr2RK9Qs7AwyN9MlpqZIYs0AvfaJwl7RAtVhC0+u2f2SKwX0uMYYd3O98Z+OBA1sj6aWVKQA=="
       },
       "Humanizer.Core": {
         "type": "Transitive",
@@ -738,6 +786,14 @@
           "SkiaSharp.NativeAssets.macOS": "2.88.9"
         }
       },
+      "SkiaSharp.NativeAssets.Linux": {
+        "type": "Transitive",
+        "resolved": "2.88.7",
+        "contentHash": "i9VitS7/5D8Te3B1Gu7F6kakW9PYVnI3YC6MoR6NidreD9hDl1EIOQEBaa0eBsOsWNX5Bz92OVf6+7KbDrJvyg==",
+        "dependencies": {
+          "SkiaSharp": "2.88.7"
+        }
+      },
       "SkiaSharp.NativeAssets.macOS": {
         "type": "Transitive",
         "resolved": "2.88.9",
@@ -777,6 +833,11 @@
         "type": "Transitive",
         "resolved": "9.0.2",
         "contentHash": "pUmqkuBS9OxWHOlfNad09Oxc8gRbxgN9UQtsqHPst4jfcgZRxQetNcsT2oe+VnUpEFAtBy1FZcJZiOscrBmA7g=="
+      },
+      "System.ValueTuple": {
+        "type": "Transitive",
+        "resolved": "4.5.0",
+        "contentHash": "okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ=="
       },
       "gouda.botlocales": {
         "type": "Project"

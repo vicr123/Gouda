@@ -4,6 +4,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.0.0" />
+    <PackageVersion Include="HarfBuzzSharp.NativeAssets.Linux" Version="8.3.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
     <PackageVersion Include="OpenMeteoApi" Version="1.3.0" />
     <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0" />
@@ -27,11 +28,13 @@
     <PackageVersion Include="NGeoNamesCore" Version="1.6.2" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
     <PackageVersion Include="Remora.Discord" Version="2025.1.0" />
+    <PackageVersion Include="SkiaSharp.HarfBuzz" Version="2.88.9" />
     <PackageVersion Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.9" />
     <PackageVersion Include="SkiaSharp.Svg" Version="1.60.0" />
     <PackageVersion Include="System.Linq.Async" Version="6.0.1" />
     <PackageVersion Include="System.Reactive.Linq" Version="6.0.1" />
     <PackageVersion Include="Microsoft.AspNetCore.SpaProxy" Version="9.0.2" />
+    <PackageVersion Include="Topten.RichTextKit" Version="0.4.167" />
   </ItemGroup>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>

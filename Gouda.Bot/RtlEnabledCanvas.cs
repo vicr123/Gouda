@@ -1,5 +1,8 @@
 using System.Globalization;
 using SkiaSharp;
+using SkiaSharp.HarfBuzz;
+using Topten.RichTextKit;
+using SKSvg = SkiaSharp.Extended.Svg.SKSvg;
 
 namespace Gouda.Bot;
 
@@ -13,12 +16,39 @@ public class RtlEnabledCanvas(SKBitmap bitmap) : SKCanvas(bitmap)
 
     public new void DrawText(string text, float x, float y, SKPaint paint)
     {
+        using SKShaper s = new(paint.Typeface);
+        var rs = new RichString().FontFamily("Asap Condensed").FontSize(paint.TextSize).Add(text);
+
         if (IsRtl)
         {
-            var width = paint.MeasureText(text);
+            x = bitmap.Width - x - rs.MeasuredWidth;
+        }
+
+        rs.Paint(this, new SKPoint(x, y));
+        // this.DrawShapedText(s, text, x, y, paint);
+    }
+
+    public void DrawRichString(RichString richString, float x, float y)
+    {
+        if (IsRtl)
+        {
+            x = bitmap.Width - x - richString.MeasuredWidth;
+        }
+
+        richString.Paint(this, new SKPoint(x, y));
+    }
+
+    public void DrawSvg(SKSvg svg, float x, float y, float width, float height, SKPaint? paint = null)
+    {
+        if (IsRtl)
+        {
             x = bitmap.Width - x - width;
         }
 
-        base.DrawText(text, x, y, paint);
+        Save();
+        Translate(x, y);
+        Scale(width / svg.CanvasSize.Width, height / svg.CanvasSize.Height);
+        DrawPicture(svg.Picture, 0, 0, paint);
+        Restore();
     }
 }
