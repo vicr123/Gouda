@@ -6,6 +6,8 @@
         <OutputType>Exe</OutputType>
         <IsAspireHost>true</IsAspireHost>
         <UserSecretsId>3277821f-b23e-4132-8d99-43edba7725ce</UserSecretsId>
+        <!-- Aspire references different packages on different operating systems, so the lock file is not useful -->
+        <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
     </PropertyGroup>
 
     <ItemGroup>
