@@ -29,6 +29,7 @@ builder.Services
     .AddRespondersFromAssembly(typeof(Program).Assembly)
     .AddInteractionGroup<WeatherInteractions>()
     .AddInteractionGroup<PicInteractions>()
+    .AddInteractionGroup<TicketsInteractions>()
     .AddScoped<TranslationService>()
     .AddScoped<ThreadPresenceService>()
     .AddScoped<GuildAlertService>()

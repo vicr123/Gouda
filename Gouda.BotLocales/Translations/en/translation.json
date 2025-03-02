@@ -47,5 +47,11 @@
   "WEATHER_ERROR": "Unable to retrieve the requested weather",
   "TODAY": "Today",
   "PROFILE_PICTURE": "Profile Picture",
-  "PROFILE_PICTURE_SERVER": "Server Profile Picture"
+  "PROFILE_PICTURE_SERVER": "Server Profile Picture",
+  "TICKETS_CREATE_TITLE": "Create a ticket",
+  "TICKETS_CREATE_FIELD_TITLE": "Ticket Title",
+  "TICKETS_CREATE_FIELD_REASON": "Reason for creating this ticket",
+  "TICKETS_CREATE_ERROR": "Sorry, there was a problem creating the ticket. Please contact staff or try again later.",
+  "TICKETS_CREATE_SUCCESS": "This ticket is now open. Staff have been notified and will respond shortly.",
+  "TICKETS_CREATE_SUCCESS_RESPONSE": "Your ticket is open. You can view the channel {{channel}} to see and respond to it. You can invite other server members to this ticket by mentioning them, if required."
 }

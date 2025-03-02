@@ -1,0 +1,9 @@
+.ticketDialogButtons {
+    display: flex;
+    gap: var(--padding);
+}
+
+.ticketPopup {
+    width: 90vw;
+    max-width: 600px;
+}

@@ -1,12 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageLayout } from "../components/PageLayout.tsx";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { RestClient } from "../restClient.ts";
 import { Field } from "../components/Field.tsx";
 import { Select } from "../components/Select.tsx";
 import Icon from "../components/Icon.tsx";
-import { Fragment, useReducer } from "react";
+import { Fragment, useReducer, useState } from "react";
 import { components } from "../server-schema";
+import { Separator } from "../components/Separator.tsx";
+import { Button } from "../components/Button.tsx";
+import { Dialog } from "../components/Dialog.tsx";
+import Styles from "./guilds.module.css";
+import { Textarea } from "../components/Textarea.tsx";
 
 type GuildChannelUpdateInfo = components["schemas"]["GuildChannelUpdateInfo"];
 
@@ -40,6 +45,7 @@ function RouteComponent() {
 function ServerPresent() {
     const { t } = useTranslation();
     const data = Route.useLoaderData();
+    const [ticketRoomDialogOpen, setTicketRoomDialogOpen] = useState(false);
 
     const [channelState, updateChannelState] = useReducer(
         (
@@ -96,6 +102,16 @@ function ServerPresent() {
                     updateChannels("superpinsChannel", channel)
                 }
                 title={t("SUPERPIN_CHANNEL")}
+            />
+            <Separator />
+            <p>{t("TICKETS_DESCRIPTION")}</p>
+            <Button onClick={() => setTicketRoomDialogOpen(true)}>
+                {t("TICKETS_CHANNEL_CREATE")}
+            </Button>
+
+            <TicketRoomDialog
+                isOpen={ticketRoomDialogOpen}
+                setIsOpen={setTicketRoomDialogOpen}
             />
         </PageLayout>
     );
@@ -226,5 +242,143 @@ function ServerChannelSelection({
                 <Field.Description>{description}</Field.Description>
             )}
         </Field.Root>
+    );
+}
+
+function TicketRoomDialog({
+    isOpen,
+    setIsOpen,
+}: {
+    isOpen: boolean;
+    setIsOpen: (isOpen: boolean) => void;
+}) {
+    const { t } = useTranslation();
+    const data = Route.useLoaderData();
+    const [selectedChannelId, setSelectedChannelId] = useState<string | null>(
+        null,
+    );
+    const [message, setMessage] = useState(
+        "If you need to chat to staff, use the button below to open a ticket.",
+    );
+    const [buttonText, setButtonText] = useState("Open Ticket");
+
+    const createTicketMessage = async () => {
+        setIsOpen(false);
+
+        await RestClient.POST("/api/guild/{guildId}/tickets", {
+            params: {
+                path: {
+                    guildId: data.guild!.id,
+                },
+            },
+            body: {
+                channelId: selectedChannelId!,
+                message: message,
+                buttonText: buttonText,
+            },
+        });
+    };
+
+    return (
+        <Dialog.Root open={isOpen}>
+            <Dialog.Portal>
+                <Dialog.Backdrop />
+                <Dialog.Popup className={Styles.ticketPopup}>
+                    <Dialog.Title>
+                        {t("TICKETS_CHANNEL_CREATE_TITLE")}
+                    </Dialog.Title>
+                    <Dialog.Description>
+                        <Trans
+                            t={t}
+                            i18nKey={"TICKETS_DIALOG_DESCRIPTION"}
+                            components={{
+                                paragraph: <p />,
+                                list: <ul />,
+                                listItem: <li />,
+                            }}
+                        >
+                            <p>
+                                To get started with Tickets, create a parent
+                                channel to host tickets and select it from
+                                below. Gouda will send a message to facilitate
+                                creation of tickets in that channel.
+                            </p>
+                            <p>The channel should be:</p>
+                            <ul>
+                                <li>
+                                    public and accessible to everyone who needs
+                                    to create tickets
+                                </li>
+                                <li>
+                                    locked to server members sending messages
+                                </li>
+                            </ul>
+                            <p>
+                                If you have not already done so, you should set
+                                an alert channel in order to receive
+                                notifications when tickets are created.
+                            </p>
+                        </Trans>
+
+                        <ServerChannelSelection
+                            selectedChannelId={selectedChannelId}
+                            onChange={(channel) =>
+                                setSelectedChannelId(channel)
+                            }
+                            title={t("TICKETS_DIALOG_TICKET_CHANNEL")}
+                        />
+                        <Field.Root>
+                            <Field.Label>
+                                {t("TICKETS_DIALOG_MESSAGE_TEXT")}
+                            </Field.Label>
+                            <Field.Control
+                                required
+                                placeholder="Required"
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                render={<Textarea />}
+                            />
+
+                            <Field.Description>
+                                {t("TICKETS_DIALOG_MESSAGE_TEXT_DESCRIPTION")}
+                            </Field.Description>
+                        </Field.Root>
+                        <Field.Root>
+                            <Field.Label>
+                                {t("TICKETS_DIALOG_BUTTON_TEXT")}
+                            </Field.Label>
+                            <Field.Control
+                                required
+                                placeholder="Required"
+                                value={buttonText}
+                                onChange={(e) => setButtonText(e.target.value)}
+                            />
+
+                            <Field.Description>
+                                {t("TICKETS_DIALOG_BUTTON_TEXT_DESCRIPTION")}
+                            </Field.Description>
+                        </Field.Root>
+                    </Dialog.Description>
+                    <div className={Styles.ticketDialogButtons}>
+                        <Dialog.Close
+                            render={<Button onClick={() => setIsOpen(false)} />}
+                        >
+                            {t("CANCEL")}
+                        </Dialog.Close>
+                        <div style={{ flexGrow: 1 }} />
+                        <Button
+                            disabled={
+                                selectedChannelId == null ||
+                                !message ||
+                                !buttonText
+                            }
+                            onClick={createTicketMessage}
+                        >
+                            {t("TICKETS_CHANNEL_CREATE_TITLE")}
+                        </Button>
+                    </div>
+                </Dialog.Popup>
+            </Dialog.Portal>
+        </Dialog.Root>
     );
 }

@@ -4,12 +4,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Remora.Discord.API.Abstractions.Objects;
 using Remora.Discord.API.Abstractions.Rest;
+using Remora.Discord.API.Objects;
+using Remora.Discord.Extensions.Embeds;
+using Remora.Discord.Interactivity;
+using Remora.Rest.Core;
 
 namespace Gouda.ApiService.Controllers;
 
 [ApiController]
 [Route("api/guild")]
-public class GuildController(GoudaDbContext dbContext, DiscordUserService discordUserService, IDiscordRestGuildAPI guildApi, IDiscordRestUserAPI userApi) : Controller
+public class GuildController(GoudaDbContext dbContext, DiscordUserService discordUserService, IDiscordRestGuildAPI guildApi, IDiscordRestUserAPI userApi, IDiscordRestChannelAPI channelApi) : Controller
 {
     [HttpGet]
     [ProducesResponseType<IEnumerable<GuildInfo>>(StatusCodes.Status200OK)]
@@ -180,6 +184,64 @@ public class GuildController(GoudaDbContext dbContext, DiscordUserService discor
         return NoContent();
     }
 
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [Route("{guildId}/tickets")]
+    public async Task<IActionResult> CreateTicketChannel(string guildId, [FromBody] TicketChannelCreateArgs args)
+    {
+        var guildIdOk = ulong.TryParse(guildId, out var guildIdNumber);
+        if (!guildIdOk)
+        {
+            return NotFound();
+        }
+
+        var userId = await discordUserService.LoggedInUserIdAsync();
+        if (userId is null)
+        {
+            return Unauthorized();
+        }
+
+        using var requestCustomisationUser = await userApi.Userify(HttpContext);
+        var guilds = await userApi.GetCurrentUserGuildsAsync();
+
+        if (guilds.Entity.All(x => x.ID.Value.Value != guildIdNumber))
+        {
+            return NotFound();
+        }
+
+        var guild = guilds.Entity.First(x => x.ID.Value.Value == guildIdNumber);
+        if (!guild.IsOwner.Value && !guild.Permissions.Value.GetPermissions()
+                .Any(x => x is DiscordPermission.ManageGuild or DiscordPermission.Administrator))
+        {
+            return Unauthorized();
+        }
+
+        var channelIdOk = ulong.TryParse(args.ChannelId, out var channelIdNumber);
+        if (!channelIdOk)
+        {
+            return BadRequest();
+        }
+
+        var channels = await guildApi.GetGuildChannelsAsync(new(guildIdNumber));
+        if (channels.Entity.All(x => x.ID.Value != channelIdNumber))
+        {
+            return BadRequest();
+        }
+
+        await channelApi.CreateMessageAsync(new(channelIdNumber), embeds: new([
+            new EmbedBuilder().WithTitle("Tickets").WithDescription(args.Message).Build()
+                .Entity
+        ]), components: new([
+            new ActionRowComponent([
+                new ButtonComponent(ButtonComponentStyle.Success, args.ButtonText, CustomID: CustomIDHelpers.CreateButtonID("ticket")),
+            ]),
+        ]));
+        return NoContent();
+    }
+
     private class GuildInfo
     {
         public required string Id { get; set; }
@@ -235,5 +297,14 @@ public class GuildController(GoudaDbContext dbContext, DiscordUserService discor
         public string? ChatLogsChannel { get; set; }
 
         public string? SuperpinsChannel { get; set; }
+    }
+
+    public class TicketChannelCreateArgs
+    {
+        public required string ChannelId { get; set; }
+
+        public required string Message { get; set; }
+
+        public required string ButtonText { get; set; }
     }
 }
