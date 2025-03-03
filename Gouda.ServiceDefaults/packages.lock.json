@@ -416,6 +416,7 @@
         "resolved": "9.0.2",
         "contentHash": "MNe7GSTBf3jQx5vYrXF0NZvn6l7hUKF6J54ENfAgCO8y6xjN1XUmKKWG464LP2ye6QqDiA1dkaWEZBYnhoZzjg=="
       }
-    }
+    },
+    "net9.0/linux-x64": {}
   }
 }

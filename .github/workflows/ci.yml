@@ -61,7 +61,7 @@ jobs:
       - name: Deploy Aspirate
         working-directory: Gouda.AppHost
         run: |
-          aspirate generate --output-format compose --include-dashboard --container-registry ghcr.io --container-image-tag "${GITHUB_REF##*/}" --non-interactive --secret-password secret
+          aspirate generate --output-format compose --include-dashboard --container-registry ghcr.io --container-image-tag "${GITHUB_REF##*/}" --non-interactive --secret-password secret --runtime-identifier linux-musl-x64
 
       - name: Generate Job Summary
         run: |

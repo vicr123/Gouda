@@ -650,6 +650,7 @@
           "OpenTelemetry": "1.9.0"
         }
       }
-    }
+    },
+    "net9.0/linux-x64": {}
   }
 }
