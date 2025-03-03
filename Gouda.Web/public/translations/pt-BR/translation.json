@@ -25,10 +25,10 @@
   "TICKETS_DESCRIPTION": "Tickets permitem que membros abram tópicos (threads) privados para que possam conversar com os administradores do servidor em privado.",
   "USER_SETTINGS": "Configurações do usuário",
   "USE_DISCORD_LANGUAGE": "Usar idioma do Discord",
-  "TICKETS_DIALOG_DESCRIPTION": "\u003Cparagraph\u003EPara começar a usar tickets, crie um canal em que os tópicos (threads) de tickets serão criados. Gouda mandará uma mensagem para facilitar a criação de tickets nele.\u003C/paragraph\u003E\n\u003Cparagraph\u003EO canal deve ser:\u003C/paragraph\u003E\n\u003Clist\u003E\n\u003ClistItem\u003Epúblico e acessível a todos que poderão criar tickets;\u003C/listItem\u003E\n\u003ClistItem\u003Etr\u003C/listItem\u003E\n\u003C/list\u003E\n\u003Cparagraph\u003EIf you have not already done so, you should set an alert channel in order to receive notifications when tickets are created.\u003C/paragraph\u003E",
-  "TICKETS_DIALOG_TICKET_CHANNEL": "",
-  "TICKETS_DIALOG_MESSAGE_TEXT": "",
-  "TICKETS_DIALOG_MESSAGE_TEXT_DESCRIPTION": "",
-  "TICKETS_DIALOG_BUTTON_TEXT": "",
-  "TICKETS_DIALOG_BUTTON_TEXT_DESCRIPTION": ""
+  "TICKETS_DIALOG_DESCRIPTION": "\u003Cparagraph\u003EPara começar a usar tickets, crie um canal em que os tópicos (threads) de tickets serão criados. Gouda mandará uma mensagem para facilitar a criação de tickets nele.\u003C/paragraph\u003E\n\u003Cparagraph\u003EEsse canal deve:\u003C/paragraph\u003E\n\u003Clist\u003E\n\u003ClistItem\u003Eser público e acessível a todos que poderão criar tickets;\u003C/listItem\u003E\n\u003ClistItem\u003Eter a permissão de mandar mensagens bloqueada para membros.\u003C/listItem\u003E\n\u003C/list\u003E\n\u003Cparagraph\u003EVocê deve ainda configurar um canal de alertas para que você possa receber alertas quando alertas forem criados.\u003C/paragraph\u003E",
+  "TICKETS_DIALOG_TICKET_CHANNEL": "Canal de tickets",
+  "TICKETS_DIALOG_MESSAGE_TEXT": "Texto da mensagem",
+  "TICKETS_DIALOG_MESSAGE_TEXT_DESCRIPTION": "Aparece na mensagem convidando usuários a criar um ticket.",
+  "TICKETS_DIALOG_BUTTON_TEXT": "Texto do botão",
+  "TICKETS_DIALOG_BUTTON_TEXT_DESCRIPTION": "Aparece no botão que os membros podem clicar para criar um ticket."
 }
