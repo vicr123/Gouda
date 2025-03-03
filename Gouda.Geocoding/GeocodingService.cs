@@ -119,6 +119,8 @@ public class GeocodingService(GoudaDbContext dbContext, IInteractionContext inte
 
         var alternateNames = await dbContext.GeonameAlternateNames.Where(altName =>
                 altName.AlternateName.ToLower().StartsWith(city.ToLower())).Select(altName => altName.GeonameId)
+            .Union(dbContext.Geonames.Where(geoname => geoname.Name.ToLower().StartsWith(city.ToLower()) || geoname.AsciiName.ToLower().StartsWith(city.ToLower()))
+                .Select(geoname => geoname.Id))
             .Distinct()
             .Join(dbContext.Geonames, x => x, x => x.Id, (x, y) => new
             {
