@@ -1,0 +1,17 @@
+{
+  "name": "Gouda",
+  "subprojects": [
+    {
+      "name": "Gouda Bot",
+      "type": "i18next",
+      "path": "/Gouda.BotLocales/Translations/{lang}/translation.json",
+      "baseLang": "en"
+    },
+    {
+      "name": "Gouda Web",
+      "type": "i18next",
+      "path": "/Gouda.Web/public/translations/{lang}/translation.json",
+      "baseLang": "en"
+    }
+  ]
+}
