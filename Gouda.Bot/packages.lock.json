@@ -956,7 +956,7 @@
         }
       }
     },
-    "net9.0/linux-x64": {
+    "net9.0/linux-musl-x64": {
       "HarfBuzzSharp.NativeAssets.Linux": {
         "type": "Direct",
         "requested": "[8.3.0.1, )",

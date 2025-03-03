@@ -7,6 +7,7 @@
         <!-- Needed for analyzers -->
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <RuntimeIdentifiers>linux-musl-x64</RuntimeIdentifiers>
     </PropertyGroup>
 
     <PropertyGroup>
