@@ -60,7 +60,7 @@ jobs:
           
       - name: Build base Docker image
         run: |
-          docker build -t gouda/bot-base .
+          docker build -t localhost:5000/gouda/bot-base .
           docker image push localhost:5000/gouda/bot-base:latest
 
       - name: Install Aspirate
