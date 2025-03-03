@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using Gouda.Bot.Services;
+using Microsoft.Extensions.Options;
 using Remora.Commands.Attributes;
 using Remora.Commands.Groups;
 using Remora.Discord.API.Abstractions.Objects;
@@ -10,7 +11,7 @@ using Remora.Results;
 
 namespace Gouda.Bot.Commands;
 
-public class AboutCommand(IFeedbackService feedbackService, TranslationService translationService) : CommandGroup
+public class AboutCommand(IFeedbackService feedbackService, TranslationService translationService, IOptions<GoudaConfiguration> configuration) : CommandGroup
 {
     [Command("about")]
     [Description("Find information about Gouda")]
@@ -24,7 +25,7 @@ public class AboutCommand(IFeedbackService feedbackService, TranslationService t
                     translationService["ABOUT_CONFIG_TITLE"],
                     translationService["ABOUT_CONFIG_DESCRIPTION", new
                     {
-                        configurationLink = "https://example.com",
+                        configurationLink = configuration.Value.ConfigurationUrl,
                     }
                     ]).Entity
                 .AddField(
@@ -40,7 +41,7 @@ public class AboutCommand(IFeedbackService feedbackService, TranslationService t
                     [
                         new ActionRowComponent(
                             [
-                                new ButtonComponent(ButtonComponentStyle.Link, translationService["ABOUT_CONFIG_BUTTON"], URL: "https://example.com"),
+                                new ButtonComponent(ButtonComponentStyle.Link, translationService["ABOUT_CONFIG_BUTTON"], URL: configuration.Value.ConfigurationUrl),
                                 new ButtonComponent(ButtonComponentStyle.Link, translationService["ABOUT_FILE_BUG_BUTTON"], URL: "https://github.com/vicr123/Gouda/issues"),
                                 new ButtonComponent(ButtonComponentStyle.Link, translationService["ABOUT_VIEW_SOURCE_BUTTON"], URL: "https://github.com/vicr123/Gouda"),
                             ]),

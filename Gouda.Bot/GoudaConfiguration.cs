@@ -1,8 +1,10 @@
 namespace Gouda.Bot;
 
-internal sealed class GoudaConfiguration
+public sealed class GoudaConfiguration
 {
     public required string DiscordToken { get; set; }
 
     public ulong[]? DebugServerId { get; set; }
+
+    public required string ConfigurationUrl { get; set; }
 }

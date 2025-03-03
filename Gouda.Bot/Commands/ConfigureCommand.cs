@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using Gouda.Bot.Services;
+using Microsoft.Extensions.Options;
 using Remora.Commands.Attributes;
 using Remora.Commands.Groups;
 using Remora.Discord.API.Abstractions.Objects;
@@ -10,7 +11,7 @@ using Remora.Results;
 
 namespace Gouda.Bot.Commands;
 
-public class ConfigureCommand(IFeedbackService feedbackService, TranslationService translationService) : CommandGroup
+public class ConfigureCommand(IFeedbackService feedbackService, TranslationService translationService, IOptions<GoudaConfiguration> configuration) : CommandGroup
 {
     [Command("Configure")]
     [Description("Make changes to settings")]
@@ -23,7 +24,7 @@ public class ConfigureCommand(IFeedbackService feedbackService, TranslationServi
                 .WithDescription(translationService["CONFIG_RESPONSE", new
                 {
                     botName = "Gouda",
-                    configurationLink = "https://localhost:1234",
+                    configurationLink = configuration.Value.ConfigurationUrl,
                 }])
                 .Build().Entity,
             new()
@@ -32,7 +33,7 @@ public class ConfigureCommand(IFeedbackService feedbackService, TranslationServi
                 [
                     new ActionRowComponent(
                     [
-                        new ButtonComponent(ButtonComponentStyle.Link, translationService["ABOUT_CONFIG_BUTTON"], URL: "https://example.com"),
+                        new ButtonComponent(ButtonComponentStyle.Link, translationService["ABOUT_CONFIG_BUTTON"], URL: configuration.Value.ConfigurationUrl),
                     ]),
                 ]),
             });

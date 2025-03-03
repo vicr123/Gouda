@@ -53,6 +53,9 @@ jobs:
       - name: Build .NET
         run: |
           dotnet build --no-restore
+        env:
+          VITE_LEAFLET_ATTRIBUTION: ${{ vars.VITE_LEAFLET_ATTRIBUTION }}
+          VITE_LEAFLET_MAP_TILE_URL: ${{ secrets.VITE_LEAFLET_MAP_TILE_URL }}
           
       - name: Start Local Docker registry
         run: |
