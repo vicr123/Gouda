@@ -53,6 +53,10 @@ jobs:
       - name: Build .NET
         run: |
           dotnet build --no-restore
+          
+      - name: Build base Docker image
+        run: |
+          docker build -t gouda/bot-base .
 
       - name: Install Aspirate
         run: |
