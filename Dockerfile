@@ -10,4 +10,18 @@ RUN apk add --no-cache \
     icu-libs \
     tzdata \
     fontconfig \
-    font-noto
+    font-noto \
+    font-noto-cjk \
+    font-noto-extra \
+    font-noto-arabic \
+    font-noto-armenian \
+    font-noto-cherokee \
+    font-noto-devanagari \
+    font-noto-ethiopic \
+    font-noto-georgian \
+    font-noto-hebrew \
+    font-noto-lao \
+    font-noto-malayalam \
+    font-noto-tamil \
+    font-noto-thaana \
+    font-noto-thai
