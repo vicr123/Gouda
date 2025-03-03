@@ -1,3 +1,13 @@
 FROM mcr.microsoft.com/dotnet/runtime:9.0-alpine
-RUN apk add icu tzdata fontconfig font-noto
-ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0
+
+ENV \
+    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
+    LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8
+
+RUN apk add --no-cache \
+    icu-data-full \
+    icu-libs \
+    tzdata \
+    fontconfig \
+    font-noto
