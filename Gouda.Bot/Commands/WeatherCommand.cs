@@ -44,16 +44,16 @@ public class WeatherCommand(GeocodingService geocodingService, IFeedbackService 
                     var userLocation = await geocodingService.UserLocation(interactionUserId.Value);
                     var closestCity =
                         await geocodingService.CityInformation(await geocodingService.ClosestCity(userLocation));
-                    conversionCountry = closestCity.Country.ToLower();
+                    conversionCountry = closestCity.CountryCode.ToLower();
                 }
                 else
                 {
-                    conversionCountry = geoname.Country.ToLower();
+                    conversionCountry = geoname.CountryCode.ToLower();
                 }
             }
             catch (InvalidLocationException)
             {
-                conversionCountry = geoname.Country.ToLower();
+                conversionCountry = geoname.CountryCode.ToLower();
             }
 
             var (memoryStream, components) = await weatherService.GenerateWeather(geoname, location, userObject,

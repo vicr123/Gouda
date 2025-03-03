@@ -83,7 +83,7 @@ public class WeatherService(TranslationService translationService, WeatherIconSe
 
         var cityName = new RichString().FontFamily(font).FontSize(50).TextColor(palette.Foreground).Add(geoname.Name);
         var cityDetails = new RichString().FontFamily(font).FontSize(30).TextColor(palette.Foreground)
-            .Add(string.Join(", ", ((string?[])[geoname.Admin1, geoname.Country]).Where(x => x is not null)));
+            .Add(string.Join(", ", ((string?[])[geoname.Admin1, geoname.CountryName]).Where(x => x is not null)));
         var currentTemp = new RichString().FontFamily(font).FontSize(80).TextColor(palette.Foreground)
             .Add(unitConverter.Temperature(currentWeather.Temperature2m));
         var feelsLikeTemp = new RichString().FontFamily(font).FontSize(30).TextColor(palette.Foreground)

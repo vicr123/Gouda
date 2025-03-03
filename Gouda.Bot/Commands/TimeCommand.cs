@@ -32,7 +32,7 @@ public class TimeCommand(GeocodingService geocodingService, IFeedbackService fee
 
             var localTime = TimeZoneInfo.ConvertTime(DateTimeOffset.Now, TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone));
 
-            string?[] parts = [geoname.Name, geoname.Admin1ShortName ?? geoname.Admin1, geoname.Country];
+            string?[] parts = [geoname.Name, geoname.Admin1ShortName ?? geoname.Admin1, geoname.CountryCode];
             await feedbackService.SendContextualAsync($":clock10: **{userObject?.Username ?? string.Join(", ", parts.Where(x => x is not null))}** {localTime:dddd, dd MMMM yyyy HH:mm}");
         }
         catch (InvalidLocationException)

@@ -34,6 +34,32 @@ public class Worker(
 
     private async Task PopulateGeonamesDatabaseAsync(GoudaDbContext dbContext, CancellationToken cancellationToken = default)
     {
+        // Check if we have countries
+        if (!await dbContext.GeonameCountries.AnyAsync(cancellationToken))
+        {
+            // Batch insert countries
+            await BatchInsert(
+                dbContext,
+                (await ReadGeonamesFileFromInternet("countryInfo.txt", cancellationToken)).Select(city =>
+                {
+                    var parts = city.Split("\t");
+                    return new GeonameCountry
+                    {
+                        Id = ulong.Parse(parts[16]),
+                        IsoCode = parts[0],
+                        Iso3Code = parts[1],
+                        IsoNumericCode = parts[2],
+                        ContinentCode = parts[8],
+                        Tld = parts[9],
+                        CurrencyCode = parts[10],
+                        CurrencyName = parts[11],
+                        TelephoneCode = parts[12],
+                        Languages = parts[15],
+                    };
+                }),
+                "countryInfo.txt");
+        }
+
         // Check if the Geonames database needs to be updated
         var today = ulong.Parse(DateTime.UtcNow.ToString("yyyyMMdd"));
         var oneYearAgo = ulong.Parse(DateTime.UtcNow.AddYears(-1).ToString("yyyyMMdd"));
@@ -148,14 +174,14 @@ public class Worker(
             {
                 using var reader = new StreamReader(entry.Open());
                 var str = await reader.ReadToEndAsync(cancellationToken);
-                return str.Split('\n', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+                return str.Split('\n', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Where(x => !x.StartsWith('#'));
             }
         }
         else
         {
             using var reader = new StreamReader(responseStream);
             var str = await reader.ReadToEndAsync(cancellationToken);
-            return str.Split('\n', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+            return str.Split('\n', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Where(x => !x.StartsWith('#'));
         }
 
         throw new();
