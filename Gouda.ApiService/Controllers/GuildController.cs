@@ -233,7 +233,7 @@ public class GuildController(GoudaDbContext dbContext, DiscordUserService discor
 
         await channelApi.CreateMessageAsync(new(channelIdNumber), embeds: new([
             new EmbedBuilder().WithTitle("Tickets").WithDescription(args.Message).Build()
-                .Entity
+                .Entity,
         ]), components: new([
             new ActionRowComponent([
                 new ButtonComponent(ButtonComponentStyle.Success, args.ButtonText, CustomID: CustomIDHelpers.CreateButtonID("ticket")),

@@ -118,7 +118,7 @@ public class TicketsInteractions(IInteractionCommandContext interactionCommandCo
                 .WithAuthor(user.Entity)
                 .WithTitle("Ticket Opened")
                 .WithDescription($"A ticket has been opened in {Mention.Channel(thread.Entity)}")
-                .Build().Entity
+                .Build().Entity,
         ]), components: new([
             new ActionRowComponent([
                 new ButtonComponent(ButtonComponentStyle.Success, "Join Thread", CustomID: CustomIDHelpers.CreateButtonIDWithState("ticket-join-thread", $"{thread.Entity.ID}")),

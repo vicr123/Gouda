@@ -164,6 +164,10 @@ public class Worker(
     private static async Task BatchInsert<T>(GoudaDbContext dbContext, IEnumerable<T> enumerable, string file) where T : class
     {
         Console.WriteLine($"Inserting {file}...");
-        await dbContext.BulkInsertAsync(enumerable);
+        foreach (var chunk in enumerable.Chunk(100000))
+        {
+            await dbContext.BulkInsertAsync(chunk);
+            Console.WriteLine("Chunked !");
+        }
     }
 }
