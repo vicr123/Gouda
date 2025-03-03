@@ -44,7 +44,7 @@ var host = builder.Build();
 
 var slashService = host.Services.GetRequiredService<SlashService>();
 
-if (goudaConfig.DebugServerId.Length > 0)
+if (goudaConfig.DebugServerId?.Length > 0)
 {
     foreach (var serverId in goudaConfig.DebugServerId)
     {
