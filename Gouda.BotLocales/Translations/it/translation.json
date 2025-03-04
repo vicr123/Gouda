@@ -10,9 +10,9 @@
   "ABOUT_CONFIG_BUTTON": "Configura Gouda",
   "ABOUT_FILE_BUG_BUTTON": "Segnala Bug",
   "ABOUT_VIEW_SOURCE_BUTTON": "Visualizza il Codice Sorgente",
-  "TIME_ERROR": "Impossibile ricavare l'orario richiesto",
+  "TIME_ERROR": "Impossibile ricavare l\u0027orario richiesto",
   "WEATHER": "Meteo",
-  "WEATHER_USER": "Meteo per l'utente {{user}}",
+  "WEATHER_USER": "Meteo per l\u0027utente {{user}}",
   "WEATHER_FEELS_LIKE": "Temperatura percepita: {{temperature}}",
   "WEATHER_CURRENT": "Meteo Attuale",
   "WEATHER_HOURLY": "Meteo Orario",
@@ -43,5 +43,15 @@
   "WEATHER_CONDITION_THUNDERSTORM": "Temporale",
   "WEATHER_CONDITION_HAIL_LIGHT": "Grandinata Leggera",
   "WEATHER_CONDITION_HAIL_HEAVY": "Grandinata Pesante",
-  "WEATHER_CONDITION_UNKNOWN": "Sconosciuto"
+  "WEATHER_CONDITION_UNKNOWN": "Sconosciuto",
+  "WEATHER_ERROR": "Impossibile ottenere il meteo richiesto",
+  "TODAY": "Oggi",
+  "PROFILE_PICTURE": "Immagine Profilo",
+  "PROFILE_PICTURE_SERVER": "Immagine Profilo del server",
+  "TICKETS_CREATE_TITLE": "Crea un ticket",
+  "TICKETS_CREATE_FIELD_TITLE": "Titolo per il Ticket",
+  "TICKETS_CREATE_FIELD_REASON": "Motivo per la creazione del ticket",
+  "TICKETS_CREATE_ERROR": "Ci dispiace, ma si è realizzato un problema durante la creazione del ticket. Ti preghiamo di contattare lo staff o di riprovare più tardi.",
+  "TICKETS_CREATE_SUCCESS": "Il ticket è stato aperto. Lo staff è stato notificato e risponderanno a breve.",
+  "TICKETS_CREATE_SUCCESS_RESPONSE": "Il tuo ticket è stato aperto. Puoi visitare il canale {{channel}} per visualizzarlo e rispondere ad eventuali messaggi. Puoi invitare altri membri del server pingandoli, se necessario."
 }
