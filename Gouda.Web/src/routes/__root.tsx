@@ -3,7 +3,6 @@ import {
     createRootRouteWithContext,
     Outlet,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import Styles from "./root.module.css";
 import { TopBar } from "../components/TopBar.tsx";
 import { RestClient } from "../restClient.ts";
@@ -41,7 +40,6 @@ export const Route = createRootRouteWithContext<{
                                 <Outlet />
                             </div>
                         </div>
-                        {/*<TanStackRouterDevtools />*/}
                     </LoginUserContext>
                 )}
             </Await>
