@@ -8,7 +8,7 @@ public class BotLocales
     public static async Task<Dictionary<string, JsonElement>?> ReadTranslationFileAsync(string language, string @namespace = "translation")
     {
         var assembly = Assembly.GetExecutingAssembly();
-        var resourceName = $"Gouda.BotLocales.Translations.{language}.{@namespace}.json";
+        var resourceName = $"Gouda.BotLocales.Translations.{language.Replace("-", "_")}.{@namespace}.json";
 
         await using var stream = assembly.GetManifestResourceStream(resourceName);
         if (stream == null)
@@ -31,6 +31,6 @@ public class BotLocales
         return assembly.GetManifestResourceNames()
             .Where(n => n.StartsWith("Gouda.BotLocales.Translations."))
             .Select(n => n.Replace("Gouda.BotLocales.Translations.", string.Empty))
-            .Select(n => n[..n.IndexOf('.')]);
+            .Select(n => n[..n.IndexOf('.')].Replace("_", "-"));
     }
 }

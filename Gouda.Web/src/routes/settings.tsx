@@ -13,6 +13,7 @@ import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { MapRef } from "react-leaflet/MapContainer";
 import { Input } from "../components/Input.tsx";
+import i18n from "i18next";
 
 export const Route = createFileRoute("/settings")({
     component: RouteComponent,
@@ -22,6 +23,45 @@ export const Route = createFileRoute("/settings")({
         return data!;
     },
 });
+
+function humanReadableLanguage(locale: string, selectedLanguage: string) {
+    try {
+        let parts = locale.split("-");
+
+        let readableParts = [];
+        let language = parts.shift();
+        let script = parts.shift();
+        let country = parts.shift();
+
+        if (language)
+            readableParts.push(
+                new Intl.DisplayNames([selectedLanguage], {
+                    type: "language",
+                }).of(language),
+            );
+
+        if (script) {
+            //Ensure this is actually a script
+            try {
+                readableParts.push(
+                    `(${new Intl.DisplayNames([selectedLanguage], { type: "script" }).of(script)})`,
+                );
+            } catch {
+                //Probably a country then
+                country = script;
+            }
+        }
+
+        if (country)
+            readableParts.push(
+                `(${new Intl.DisplayNames([selectedLanguage], { type: "region" }).of(country)})`,
+            );
+
+        return readableParts.join(" ");
+    } catch {
+        return locale;
+    }
+}
 
 function RouteComponent() {
     const { t } = useTranslation();
@@ -122,12 +162,10 @@ function RouteComponent() {
                                                         />
                                                     </Select.ItemIndicator>
                                                     <Select.ItemText>
-                                                        {new Intl.DisplayNames(
+                                                        {humanReadableLanguage(
                                                             locale,
-                                                            {
-                                                                type: "language",
-                                                            },
-                                                        ).of(locale)}
+                                                            i18n.language,
+                                                        )}
                                                     </Select.ItemText>
                                                 </Select.Item>
                                             ),

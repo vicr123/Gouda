@@ -41,7 +41,7 @@ export const Route = createRootRouteWithContext<{
                                 <Outlet />
                             </div>
                         </div>
-                        <TanStackRouterDevtools />
+                        {/*<TanStackRouterDevtools />*/}
                     </LoginUserContext>
                 )}
             </Await>
