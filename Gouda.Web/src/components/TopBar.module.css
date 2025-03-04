@@ -16,6 +16,11 @@
 
 .icon {
     grid-area: icon;
+    
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 15pt;
 }
 
 .iconImage {

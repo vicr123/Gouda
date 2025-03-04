@@ -4,7 +4,6 @@ import { Await, getRouteApi } from "@tanstack/react-router";
 import { Popover } from "./Popover.tsx";
 import { Separator } from "./Separator.tsx";
 import { useTranslation } from "react-i18next";
-import GoudaLogo from "../assets/gouda.svg";
 
 export function TopBar() {
     const routeApi = getRouteApi("__root__");
@@ -16,9 +15,10 @@ export function TopBar() {
             <div className={Styles.icon}>
                 <img
                     className={Styles.iconImage}
-                    src={GoudaLogo}
+                    src={"/gouda.png"}
                     alt="Gouda Logo"
                 />
+                Gouda
             </div>
 
             <Await promise={data.user}>
