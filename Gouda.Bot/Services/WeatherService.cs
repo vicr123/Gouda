@@ -165,6 +165,37 @@ public class WeatherService(TranslationService translationService, WeatherIconSe
         canvas.DrawSvg(weatherIconService.Pressure, 500, 200, 32, 32, true);
         canvas.DrawRichString(pressure, 542, 200);
 
+        var thisHourlyWeather = hourlyForecast.SkipWhile(
+            x => new DateTimeOffset(
+                     x.Time!.Value,
+                     TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone).GetUtcOffset(x.Time.Value)) <
+                 localTime.Subtract(TimeSpan.FromHours(1)).ToUniversalTime()).FirstOrDefault();
+        var thisDailyWeather = dailyForecast.SkipWhile(x =>
+            new DateTimeOffset(
+                x.Time!.Value,
+                TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone).GetUtcOffset(x.Time.Value)).Date !=
+            localTime.ToUniversalTime().Date).FirstOrDefault();
+
+        var visibility = new RichString().FontFamily(font).FontSize(30).TextColor(palette.Foreground)
+            .Add(thisHourlyWeather is null ? "-" : unitConverter.Distance(thisHourlyWeather.Visibility));
+        canvas.DrawSvg(weatherIconService.Visibility, 10, 242, 32, 32, true);
+        canvas.DrawRichString(visibility, 52, 242);
+
+        var uvIndex = new RichString().FontFamily(font).FontSize(30).TextColor(palette.Foreground)
+            .Add(thisHourlyWeather is null ? "-" : $"{thisHourlyWeather.UvIndex}");
+        canvas.DrawSvg(weatherIconService.UvIndex, 200, 242, 32, 32, true);
+        canvas.DrawRichString(uvIndex, 242, 242);
+
+        var sunrise = new RichString().FontFamily(font).FontSize(30).TextColor(palette.Foreground)
+            .Add(thisDailyWeather?.Sunrise is null ? "--:--" : $"{DateTimeOffset.Parse(thisDailyWeather.Sunrise):HH:mm}");
+        canvas.DrawSvg(weatherIconService.Sunrise, 350, 242, 32, 32);
+        canvas.DrawRichString(sunrise, 392, 242);
+
+        var sunset = new RichString().FontFamily(font).FontSize(30).TextColor(palette.Foreground)
+            .Add(thisDailyWeather?.Sunset is null ? "--:--" : $"{DateTimeOffset.Parse(thisDailyWeather.Sunset):HH:mm}");
+        canvas.DrawSvg(weatherIconService.Sunset, 500, 242, 32, 32);
+        canvas.DrawRichString(sunset, 542, 242);
+
         switch (weatherType)
         {
             case WeatherType.Hourly:
@@ -278,6 +309,16 @@ public class WeatherService(TranslationService translationService, WeatherIconSe
             }
 
             return $"{pressure:N0} hPa";
+        }
+
+        public string Distance(double? distance)
+        {
+            if (country is "us" or "gb")
+            {
+                return $"{distance / 1000 * 0.6214:N1} mi";
+            }
+
+            return $"{distance / 1000:N1} km";
         }
     }
 }

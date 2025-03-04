@@ -27,6 +27,8 @@ public class WeatherIconService
         using var lowTempStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.low-temp.svg");
         using var highTempStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.high-temp.svg");
         using var unavailStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.unavail.svg");
+        using var visibilityStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.visibility.svg");
+        using var uvIndexStream = thisAssembly.GetManifestResourceStream("Gouda.Bot.Weather.Images.uv-index.svg");
 
         Barry = SKBitmap.Decode(barryStream);
         Sunny.Load(sunnyStream);
@@ -46,6 +48,8 @@ public class WeatherIconService
         LowTemp.Load(lowTempStream);
         HighTemp.Load(highTempStream);
         Unavailable.Load(unavailStream);
+        Visibility.Load(visibilityStream);
+        UvIndex.Load(uvIndexStream);
     }
 
     public SKBitmap Barry { get; }
@@ -85,6 +89,10 @@ public class WeatherIconService
     public SKSvg HighTemp { get; } = new();
 
     public SKSvg Unavailable { get; } = new();
+
+    public SKSvg Visibility { get; } = new();
+
+    public SKSvg UvIndex { get; } = new();
 
     public SKSvg WeatherIcon(int weatherCode, bool isDay)
     {
