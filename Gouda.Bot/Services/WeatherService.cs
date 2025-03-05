@@ -209,6 +209,10 @@ public class WeatherService(TranslationService translationService, WeatherIconSe
                         .Add(unitConverter.Temperature(forecast.Temperature2m));
                     canvas.DrawRichString(temperature, i * 100 + (50 - temperature.MeasuredWidth / 2), 490 - temperature.MeasuredHeight);
 
+                    var isDay = thisDailyWeather?.Sunrise is not null && thisDailyWeather.Sunset is not null &&
+                                DateTimeOffset.Parse(thisDailyWeather.Sunrise) < forecast.Time &&
+                                DateTimeOffset.Parse(thisDailyWeather.Sunset) > forecast.Time;
+
                     if (forecast.PrecipitationProbability!.Value > 0)
                     {
                         var precipitation = new RichString().FontFamily(font).FontSize(25).TextColor(palette.Foreground).Add($"{forecast.PrecipitationProbability}%");
@@ -216,11 +220,11 @@ public class WeatherService(TranslationService translationService, WeatherIconSe
                         canvas.DrawSvg(weatherIconService.Precipitation, i * 100 + (50 - fullWidth / 2), 490 - temperature.MeasuredHeight - 10 - precipitation.MeasuredHeight, 32, 32);
                         canvas.DrawRichString(precipitation, i * 100 + (50 - fullWidth / 2) + 32, 490 - temperature.MeasuredHeight - 10 - precipitation.MeasuredHeight);
 
-                        canvas.DrawSvg(weatherIconService.WeatherIcon(forecast.WeatherCode!.Value, forecast.IsDay == 1), i * 100 + (50 - 30), 340, 60, 60);
+                        canvas.DrawSvg(weatherIconService.WeatherIcon(forecast.WeatherCode!.Value, isDay), i * 100 + (50 - 30), 340, 60, 60);
                     }
                     else
                     {
-                        canvas.DrawSvg(weatherIconService.WeatherIcon(forecast.WeatherCode!.Value, forecast.IsDay == 1), i * 100 + (50 - 40), 360, 80, 80);
+                        canvas.DrawSvg(weatherIconService.WeatherIcon(forecast.WeatherCode!.Value, isDay), i * 100 + (50 - 40), 360, 80, 80);
                     }
                 }
 
