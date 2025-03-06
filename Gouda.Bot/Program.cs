@@ -23,7 +23,7 @@ builder.Services
     .AddDiscordService(_ => goudaConfig.DiscordToken)
     .Configure<DiscordGatewayClientOptions>(g =>
         g.Intents |= GatewayIntents.MessageContents | GatewayIntents.GuildMembers | GatewayIntents.Guilds |
-                     GatewayIntents.DirectMessages | GatewayIntents.GuildBans)
+                     GatewayIntents.DirectMessages | GatewayIntents.GuildBans | GatewayIntents.GuildMessageReactions)
     .AddDiscordCaching()
     .AddDiscordCommands(enableSlash: true)
     .AddInteractivity()
@@ -37,9 +37,11 @@ builder.Services
     .AddScoped<GuildAlertService>()
     .AddScoped<WeatherService>()
     .AddScoped<PicService>()
+    .AddScoped<PinService>()
     .AddSingleton<WeatherIconService>()
     .AddGeocoding()
-    .Configure<GoudaConfiguration>(builder.Configuration.GetSection("Gouda"));
+    .Configure<GoudaConfiguration>(builder.Configuration.GetSection("Gouda"))
+    .AddMemoryCache();
 
 builder.AddNpgsqlDbContext<GoudaDbContext>(connectionName: "gouda-db");
 
