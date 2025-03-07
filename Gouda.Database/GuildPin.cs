@@ -10,4 +10,6 @@ public class GuildPin
     public ulong Id { get; set; }
 
     public required string PinEmoji { get; set; }
+
+    public int SuperpinLimit { get; set; } = 5;
 }

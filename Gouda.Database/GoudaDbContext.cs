@@ -23,4 +23,6 @@ public class GoudaDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<GuildPin> GuildPins { get; set; }
 
     public DbSet<GeonameCountry> GeonameCountries { get; set; }
+
+    public DbSet<Superpins> Superpins { get; set; }
 }
