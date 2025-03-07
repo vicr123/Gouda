@@ -59,5 +59,9 @@
   "PIN_ATTACHMENTS_one": "{{count}} attachment",
   "PIN_ATTACHMENTS_other": "{{count}} attachments",
   "PIN_JUMP": "Jump",
-  "COMMAND_NOT_CALLED": "Sorry, you didn't call this command."
+  "COMMAND_NOT_CALLED": "Sorry, you didn't call this command.",
+  "PIN_PAGE_NEWER": "Newer",
+  "PIN_PAGE_OLDER": "Older",
+  "PIN_PAGE_VIEW_ONLINE": "View Online",
+  "PIN_PAGE_TITLE": "Pins - {{user}}"
 }

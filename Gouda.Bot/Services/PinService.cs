@@ -101,7 +101,11 @@ public class PinService(GoudaDbContext dbContext, IDiscordRestChannelAPI channel
         });
 
         var embed = new EmbedBuilder()
-            .WithTitle($"Pins - {user.Entity.DisplayName()}");
+            .WithTitle(translationService["PIN_PAGE_TITLE", new
+            {
+                user = user.Entity.DisplayName(),
+            }
+            ]);
 
         await foreach (var pin in fields)
         {
@@ -111,9 +115,9 @@ public class PinService(GoudaDbContext dbContext, IDiscordRestChannelAPI channel
 
         return (embed.Build().Entity, [
             new ActionRowComponent([
-                new ButtonComponent(ButtonComponentStyle.Primary, "\u2b05\ufe0f Newer", CustomID: CustomIDHelpers.CreateButtonIDWithState("change-pin-page", $"{page - 1}_{userId}"), IsDisabled: page == 0),
-                new ButtonComponent(ButtonComponentStyle.Primary, "Older \u27a1\ufe0f", CustomID: CustomIDHelpers.CreateButtonIDWithState("change-pin-page", $"{page + 1}_{userId}"), IsDisabled: (page + 1) * 5 >= totalPins),
-                new ButtonComponent(ButtonComponentStyle.Link, "View Online", URL: $"{options.Value.ConfigurationUrl}/pins")
+                new ButtonComponent(ButtonComponentStyle.Primary, $"\u2b05\ufe0f {translationService["PIN_PAGE_NEWER"]}", CustomID: CustomIDHelpers.CreateButtonIDWithState("change-pin-page", $"{page - 1}_{userId}"), IsDisabled: page == 0),
+                new ButtonComponent(ButtonComponentStyle.Primary, $"{translationService["PIN_PAGE_OLDER"]} \u27a1\ufe0f", CustomID: CustomIDHelpers.CreateButtonIDWithState("change-pin-page", $"{page + 1}_{userId}"), IsDisabled: (page + 1) * 5 >= totalPins),
+                new ButtonComponent(ButtonComponentStyle.Link, translationService["PIN_PAGE_VIEW_ONLINE"], URL: $"{options.Value.ConfigurationUrl}/pins")
             ]),
         ]);
     }
