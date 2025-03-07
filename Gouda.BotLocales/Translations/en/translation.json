@@ -53,5 +53,11 @@
   "TICKETS_CREATE_FIELD_REASON": "Reason for creating this ticket",
   "TICKETS_CREATE_ERROR": "Sorry, there was a problem creating the ticket. Please contact staff or try again later.",
   "TICKETS_CREATE_SUCCESS": "This ticket is now open. Staff have been notified and will respond shortly.",
-  "TICKETS_CREATE_SUCCESS_RESPONSE": "Your ticket is open. You can view the channel {{channel}} to see and respond to it. You can invite other server members to this ticket by mentioning them, if required."
+  "TICKETS_CREATE_SUCCESS_RESPONSE": "Your ticket is open. You can view the channel {{channel}} to see and respond to it. You can invite other server members to this ticket by mentioning them, if required.",
+  "PIN_DONE": "Done!",
+  "PIN_MESSAGE": "The above message was pinned to your portable pinboard",
+  "PIN_ATTACHMENTS_one": "{{count}} attachment",
+  "PIN_ATTACHMENTS_other": "{{count}} attachments",
+  "PIN_JUMP": "Jump",
+  "COMMAND_NOT_CALLED": "Sorry, you didn't call this command."
 }

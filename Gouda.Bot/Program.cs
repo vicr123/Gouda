@@ -32,6 +32,7 @@ builder.Services
     .AddInteractionGroup<WeatherInteractions>()
     .AddInteractionGroup<PicInteractions>()
     .AddInteractionGroup<TicketsInteractions>()
+    .AddInteractionGroup<PinInteractions>()
     .AddScoped<TranslationService>()
     .AddScoped<ThreadPresenceService>()
     .AddScoped<GuildAlertService>()

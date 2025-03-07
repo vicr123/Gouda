@@ -10,10 +10,10 @@ public class TranslationService
 {
     private readonly II18Next _i18Next;
 
-    public TranslationService(IInteractionCommandContext interactionContext, GoudaDbContext dbContext)
+    public TranslationService(GoudaDbContext dbContext, IServiceProvider serviceProvider)
     {
         var backend = new BotResourcesTranslationBackend();
-        var languageDetector = new GoudaDbLanguageDetector(interactionContext, dbContext);
+        var languageDetector = new GoudaDbLanguageDetector(serviceProvider, dbContext);
         _i18Next = new I18NextNet(
             backend,
             new DefaultTranslator(backend),
