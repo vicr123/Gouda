@@ -53,5 +53,15 @@
   "TICKETS_CREATE_FIELD_REASON": "Motivo de criar o ticket",
   "TICKETS_CREATE_ERROR": "Desculpe, houve um problema ao criar o ticket. Entre em contato com os administradores ou tente novamente mais tarde.",
   "TICKETS_CREATE_SUCCESS": "O ticket foi criado. Administradores do servidor foram notificados e devem responder logo.",
-  "TICKETS_CREATE_SUCCESS_RESPONSE": "Seu ticket está aberto. Você pode ver o canal {{channel}} para ver e responder. Você pode convidar outros membros ao ticket os mencionando."
+  "TICKETS_CREATE_SUCCESS_RESPONSE": "Seu ticket está aberto. Você pode ver o canal {{channel}} para ver e responder. Você pode convidar outros membros ao ticket os mencionando.",
+  "PIN_DONE": "Pronto!",
+  "PIN_MESSAGE": "A mensagem acima foi fixada ao seu mural portátil",
+  "PIN_ATTACHMENTS_one": "{{count}} anexo",
+  "PIN_ATTACHMENTS_other": "",
+  "PIN_JUMP": "Pular",
+  "COMMAND_NOT_CALLED": "Desculpa, não foi você quem usou esse comando",
+  "PIN_PAGE_NEWER": "Mais recente",
+  "PIN_PAGE_OLDER": "Mais antigo",
+  "PIN_PAGE_VIEW_ONLINE": "Ver online",
+  "PIN_PAGE_TITLE": "Mensagens fixadas – {{user}}"
 }
