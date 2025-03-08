@@ -46,7 +46,8 @@ public class PinService(GoudaDbContext dbContext, IDiscordRestChannelAPI channel
                 new(MessageReferenceType.Default),
                 MessageID: new(new(messageId)),
                 ChannelID: new(new(channelId)),
-                GuildID: channel.Entity.GuildID)));
+                GuildID: channel.Entity.GuildID)),
+            allowedMentions: new(new AllowedMentions(MentionRepliedUser: new(false))));
 
         memoryCache.Set($"pin-{channelId}-{messageId}", message.Entity.ID);
 
