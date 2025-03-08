@@ -17,6 +17,19 @@ public class PinService(GoudaDbContext dbContext, IDiscordRestChannelAPI channel
 {
     public async Task PinMessage(ulong channelId, ulong messageId, ulong userId)
     {
+        var channelTask = channelApi.GetChannelAsync(new(channelId));
+        var messageTask = channelApi.GetChannelMessageAsync(new(channelId), new(messageId));
+
+        var channel = await channelTask;
+
+        var guildChannels =
+            await dbContext.GuildChannels.FirstOrDefaultAsync(x => x.Id == channel.Entity.GuildID.Value.Value);
+        if (channelId == guildChannels?.SuperpinChannel)
+        {
+            // Prevent pinning of messages in the superpin channel
+            return;
+        }
+
         var newPinId = dbContext.Pins.Where(x => x.UserId == userId).Select(x => x.PinNumber).DefaultIfEmpty().Max() + 1;
         dbContext.Pins.Add(new()
         {
@@ -27,10 +40,6 @@ public class PinService(GoudaDbContext dbContext, IDiscordRestChannelAPI channel
         });
         await dbContext.SaveChangesAsync();
 
-        var channelTask = channelApi.GetChannelAsync(new(channelId));
-        var messageTask = channelApi.GetChannelMessageAsync(new(channelId), new(messageId));
-
-        var channel = await channelTask;
         var pinnedMessage = await messageTask;
 
         var message = await channelApi.CreateMessageAsync(
