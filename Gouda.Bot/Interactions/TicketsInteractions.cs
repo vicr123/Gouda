@@ -118,6 +118,7 @@ public class TicketsInteractions(IInteractionCommandContext interactionCommandCo
                 .WithAuthor(user.Entity)
                 .WithTitle("Ticket Opened")
                 .WithDescription($"A ticket has been opened in {Mention.Channel(thread.Entity)}")
+                .AddField("Reason", reason).Entity
                 .Build().Entity,
         ]), components: new([
             new ActionRowComponent([
