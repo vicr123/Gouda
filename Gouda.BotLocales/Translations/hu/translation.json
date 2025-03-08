@@ -53,5 +53,15 @@
   "TICKETS_CREATE_FIELD_REASON": "A hibajegy létrehozásának oka",
   "TICKETS_CREATE_ERROR": "Sajnos nem sikerült létrehozni a hibajegyet. Keresd fel a személyzetet vagy próbáld újra később.",
   "TICKETS_CREATE_SUCCESS": "A hibajegy nyitva. A személyzetet értesítettük, és hamarosan válaszolni fognak.",
-  "TICKETS_CREATE_SUCCESS_RESPONSE": "A hibajegy nyitva. Megtekintheted a {{channel}} csatornát ha látni vagy válaszolni szeretnél rá. Meghívhatsz más szerver tagokat a hibajegyre a megjelölésükkel, ha szükséges."
+  "TICKETS_CREATE_SUCCESS_RESPONSE": "A hibajegy nyitva. Megtekintheted a {{channel}} csatornát ha látni vagy válaszolni szeretnél rá. Meghívhatsz más szerver tagokat a hibajegyre a megjelölésükkel, ha szükséges.",
+  "PIN_DONE": "Kész!",
+  "PIN_MESSAGE": "A fenti üzenetet kitűztük a hordozható tábládra",
+  "PIN_ATTACHMENTS_one": "{{count}} db csatolmány",
+  "PIN_ATTACHMENTS_other": "{{count}} db csatolmány",
+  "PIN_JUMP": "Ugrás",
+  "COMMAND_NOT_CALLED": "Sajnáljuk, de nem hívtad meg ezt a parancsot",
+  "PIN_PAGE_NEWER": "Újabb",
+  "PIN_PAGE_OLDER": "Régebbi",
+  "PIN_PAGE_VIEW_ONLINE": "Megtekintés online",
+  "PIN_PAGE_TITLE": "Kitűzött üzenetek - {{user}}"
 }
