@@ -57,7 +57,8 @@ public class WeatherService(TranslationService translationService, WeatherIconSe
         var dailyForecastTask = DailyForecast(location.Latitude, location.Longitude, geoname.Timezone);
         var currentWeatherTask = CurrentWeather(location.Latitude, location.Longitude, geoname.Timezone);
 
-        var localTime = TimeZoneInfo.ConvertTime(DateTimeOffset.Now, TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone));
+        var timezone = TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone);
+        var localTime = TimeZoneInfo.ConvertTime(DateTimeOffset.Now, timezone);
 
         var hourlyForecast = await hourlyForecastTask;
         var dailyForecast = await dailyForecastTask;
@@ -66,7 +67,7 @@ public class WeatherService(TranslationService translationService, WeatherIconSe
         var today = dailyForecast.SkipWhile(x =>
             new DateTimeOffset(
                 x.Time!.Value,
-                TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone).GetUtcOffset(x.Time.Value)).Date !=
+                timezone.GetUtcOffset(x.Time.Value)).Date !=
             localTime.ToUniversalTime().Date).FirstOrDefault();
 
         IWeatherPalette palette = currentWeather.WeatherCode switch
@@ -168,12 +169,12 @@ public class WeatherService(TranslationService translationService, WeatherIconSe
         var thisHourlyWeather = hourlyForecast.SkipWhile(
             x => new DateTimeOffset(
                      x.Time!.Value,
-                     TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone).GetUtcOffset(x.Time.Value)) <
+                     timezone.GetUtcOffset(x.Time.Value)) <
                  localTime.Subtract(TimeSpan.FromHours(1)).ToUniversalTime()).FirstOrDefault();
         var thisDailyWeather = dailyForecast.SkipWhile(x =>
             new DateTimeOffset(
                 x.Time!.Value,
-                TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone).GetUtcOffset(x.Time.Value)).Date !=
+                timezone.GetUtcOffset(x.Time.Value)).Date !=
             localTime.ToUniversalTime().Date).FirstOrDefault();
 
         var visibility = new RichString().FontFamily(font).FontSize(30).TextColor(palette.Foreground)
@@ -199,15 +200,25 @@ public class WeatherService(TranslationService translationService, WeatherIconSe
         switch (weatherType)
         {
             case WeatherType.Hourly:
-                foreach (var (forecast, i) in hourlyForecast.SkipWhile(x => new DateTimeOffset(x.Time!.Value, TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone).GetUtcOffset(x.Time.Value)) < localTime.Subtract(TimeSpan.FromHours(1)).ToUniversalTime()).Take(bitmap.Width / 100).Select((forecast, i) => (forecast, i)))
+            {
+                var hours = hourlyForecast
+                    .SkipWhile(x =>
+                        new DateTimeOffset(x.Time!.Value, timezone.GetUtcOffset(x.Time.Value)) <
+                        localTime.Subtract(TimeSpan.FromHours(1)).ToUniversalTime()).Take(bitmap.Width / 100)
+                    .Index().ToList();
+                var startingFrom = TimeZoneInfo.ConvertTimeToUtc(hours[0].Item.Time!.Value, timezone);
+
+                foreach (var (i, forecast) in hours)
                 {
                     var time = new RichString().FontFamily(font).FontSize(25).TextColor(palette.Foreground)
-                        .Add($"{forecast.Time:HH:mm}");
+                        .Add(
+                            $"{TimeZoneInfo.ConvertTimeFromUtc(startingFrom.AddHours(i), timezone):HH:mm}");
                     canvas.DrawRichString(time, i * 100 + (50 - time.MeasuredWidth / 2), 310);
 
                     var temperature = new RichString().FontFamily(font).FontSize(25).TextColor(palette.Foreground)
                         .Add(unitConverter.Temperature(forecast.Temperature2m));
-                    canvas.DrawRichString(temperature, i * 100 + (50 - temperature.MeasuredWidth / 2), 490 - temperature.MeasuredHeight);
+                    canvas.DrawRichString(temperature, i * 100 + (50 - temperature.MeasuredWidth / 2),
+                        490 - temperature.MeasuredHeight);
 
                     var isDay = thisDailyWeather?.Sunrise is not null && thisDailyWeather.Sunset is not null &&
                                 DateTimeOffset.Parse(thisDailyWeather.Sunrise) < forecast.Time &&
@@ -215,25 +226,34 @@ public class WeatherService(TranslationService translationService, WeatherIconSe
 
                     if (forecast.PrecipitationProbability!.Value > 0)
                     {
-                        var precipitation = new RichString().FontFamily(font).FontSize(25).TextColor(palette.Foreground).Add($"{forecast.PrecipitationProbability}%");
+                        var precipitation = new RichString().FontFamily(font).FontSize(25).TextColor(palette.Foreground)
+                            .Add($"{forecast.PrecipitationProbability}%");
                         var fullWidth = precipitation.MeasuredWidth + 32;
-                        canvas.DrawSvg(weatherIconService.Precipitation, i * 100 + (50 - fullWidth / 2), 490 - temperature.MeasuredHeight - 10 - precipitation.MeasuredHeight, 32, 32);
-                        canvas.DrawRichString(precipitation, i * 100 + (50 - fullWidth / 2) + 32, 490 - temperature.MeasuredHeight - 10 - precipitation.MeasuredHeight);
+                        canvas.DrawSvg(weatherIconService.Precipitation, i * 100 + (50 - fullWidth / 2),
+                            490 - temperature.MeasuredHeight - 10 - precipitation.MeasuredHeight, 32, 32);
+                        canvas.DrawRichString(precipitation, i * 100 + (50 - fullWidth / 2) + 32,
+                            490 - temperature.MeasuredHeight - 10 - precipitation.MeasuredHeight);
 
-                        canvas.DrawSvg(weatherIconService.WeatherIcon(forecast.WeatherCode!.Value, isDay), i * 100 + (50 - 30), 340, 60, 60);
+                        canvas.DrawSvg(
+                            weatherIconService.WeatherIcon(forecast.WeatherCode!.Value, isDay),
+                            i * 100 + (50 - 30), 340, 60, 60);
                     }
                     else
                     {
-                        canvas.DrawSvg(weatherIconService.WeatherIcon(forecast.WeatherCode!.Value, isDay), i * 100 + (50 - 40), 360, 80, 80);
+                        canvas.DrawSvg(
+                            weatherIconService.WeatherIcon(forecast.WeatherCode!.Value, isDay),
+                            i * 100 + (50 - 40), 360, 80, 80);
                     }
                 }
 
                 break;
+            }
+
             case WeatherType.Daily:
                 foreach (var (forecast, i) in dailyForecast.SkipWhile(x =>
                              new DateTimeOffset(
                                  x.Time!.Value,
-                                 TimeZoneInfo.FindSystemTimeZoneById(geoname.Timezone).GetUtcOffset(x.Time.Value)).Date !=
+                                 timezone.GetUtcOffset(x.Time.Value)).Date !=
                              localTime.ToUniversalTime().Date).Take(bitmap.Width / 100).Select((forecast, i) => (forecast, i)))
                 {
                     var time = new RichString().FontFamily(font).FontSize(25).TextColor(palette.Foreground)
