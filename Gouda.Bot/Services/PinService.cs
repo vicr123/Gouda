@@ -64,7 +64,16 @@ public class PinService(GoudaDbContext dbContext, IDiscordRestChannelAPI channel
 
         memoryCache.Set($"pin-{channelId}-{messageId}", message.Entity.ID);
 
-        if (await dbContext.GuildPins.AnyAsync(x => x.Id == channel.Entity.GuildID.Value.Value && x.SuperpinLimit <= dbContext.Pins.Count(pin => pin.Channel == channelId && pin.Message == messageId)))
+        if (await dbContext.GuildPins.Where(x => x.Id == channel.Entity.GuildID.Value.Value)
+                .Union([new()
+                {
+                    Id = channel.Entity.GuildID.Value.Value,
+                    SuperpinLimit = 5,
+                    PinEmoji = string.Empty,
+                },
+                ])
+                .Take(1)
+                .AnyAsync(x => x.Id == channel.Entity.GuildID.Value.Value && x.SuperpinLimit <= dbContext.Pins.Count(pin => pin.Channel == channelId && pin.Message == messageId)))
         {
             await SuperpinMessage(channelId, messageId);
         }
