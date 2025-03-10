@@ -1,3 +1,4 @@
+using Gouda.Bot.Extensions;
 using Gouda.Database;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
@@ -40,7 +41,7 @@ public class MemberMovementResponder(GoudaDbContext dbContext, IDiscordRestChann
 
         await channelApi.CreateMessageAsync(
             new(logsChannel.AlertChannel.Value),
-            $":arrow_left: {Mention.User(gatewayEvent.User)}",
+            $":arrow_left: {Mention.User(gatewayEvent.User)} ({gatewayEvent.User.DisplayName()})",
             ct: ct);
 
         return Result.Success;
