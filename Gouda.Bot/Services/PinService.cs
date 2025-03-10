@@ -1,4 +1,5 @@
 using Gouda.Bot.Extensions;
+using Gouda.Bot.Helpers;
 using Gouda.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -19,6 +20,7 @@ public class PinService(GoudaDbContext dbContext, IDiscordRestChannelAPI channel
     {
         var channelTask = channelApi.GetChannelAsync(new(channelId));
         var messageTask = channelApi.GetChannelMessageAsync(new(channelId), new(messageId));
+        var userTask = userApi.GetUserAsync(new(userId));
 
         var channel = await channelTask;
 
@@ -41,6 +43,7 @@ public class PinService(GoudaDbContext dbContext, IDiscordRestChannelAPI channel
         await dbContext.SaveChangesAsync();
 
         var pinnedMessage = await messageTask;
+        var user = await userTask;
 
         var message = await channelApi.CreateMessageAsync(
             new(channelId),
@@ -49,6 +52,7 @@ public class PinService(GoudaDbContext dbContext, IDiscordRestChannelAPI channel
                     .WithTitle(translationService["PIN_DONE"])
                     .WithDescription(translationService["PIN_MESSAGE"])
                     .AddField(pinnedMessage.Entity.Author.Username, BuildMessageString(pinnedMessage.Entity, channel.Entity.GuildID.Value.Value)).Entity
+                    .WithFooter($"{user.Entity.Username} pinned a message", UserHelpers.GetAvatarUrl(user.Entity))
                     .Build().Entity,
             ]),
             messageReference: new(new MessageReference(
