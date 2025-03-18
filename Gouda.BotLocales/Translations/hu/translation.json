@@ -12,7 +12,7 @@
   "ABOUT_VIEW_SOURCE_BUTTON": "Forrás megtekintése",
   "TIME_ERROR": "Nem sikerült lekérdezni a kért időt",
   "WEATHER": "Időjárás",
-  "WEATHER_USER": "Időjárás {{user}} felhasználónak",
+  "WEATHER_USER": "{{user}} időjárása",
   "WEATHER_FEELS_LIKE": "{{temperature}}-nak érződik",
   "WEATHER_CURRENT": "Jelenlegi időjárás",
   "WEATHER_HOURLY": "Óránkénti előrejelzés",
