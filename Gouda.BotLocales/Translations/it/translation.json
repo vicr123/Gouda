@@ -53,5 +53,15 @@
   "TICKETS_CREATE_FIELD_REASON": "Motivo per la creazione del ticket",
   "TICKETS_CREATE_ERROR": "Ci dispiace, ma si è realizzato un problema durante la creazione del ticket. Ti preghiamo di contattare lo staff o di riprovare più tardi.",
   "TICKETS_CREATE_SUCCESS": "Il ticket è stato aperto. Lo staff è stato notificato e risponderanno a breve.",
-  "TICKETS_CREATE_SUCCESS_RESPONSE": "Il tuo ticket è stato aperto. Puoi visitare il canale {{channel}} per visualizzarlo e rispondere ad eventuali messaggi. Puoi invitare altri membri del server pingandoli, se necessario."
+  "TICKETS_CREATE_SUCCESS_RESPONSE": "Il tuo ticket è stato aperto. Puoi visitare il canale {{channel}} per visualizzarlo e rispondere ad eventuali messaggi. Puoi invitare altri membri del server pingandoli, se necessario.",
+  "PIN_DONE": "Fatto!",
+  "PIN_MESSAGE": "Il messaggio qua sopra è stato salvato nella tua bacheca portatile",
+  "PIN_ATTACHMENTS_one": "{{count}} allegato",
+  "PIN_ATTACHMENTS_other": "{{count}} allegati",
+  "PIN_JUMP": "Salta",
+  "COMMAND_NOT_CALLED": "Ci dispiace, ma non hai chiamato questo comando.",
+  "PIN_PAGE_NEWER": "Più Nuovi",
+  "PIN_PAGE_OLDER": "Più Vecchi",
+  "PIN_PAGE_VIEW_ONLINE": "Mostra sul sito",
+  "PIN_PAGE_TITLE": "Messaggi Salvati - {{user}}"
 }
